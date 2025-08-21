@@ -27,9 +27,9 @@ export const Feature1 = () => {
             Built for Construction Cloud resilience
           </h2>
           <p className="text-muted-foreground flex-1 text-lg font-medium md:max-w-md md:self-end">
-            Siinc provides enterprise-grade backup and recovery specifically designed
-            for Autodesk Construction Cloud, ensuring your critical project data is
-            always protected and recoverable.
+            Siinc provides enterprise-grade backup and recovery specifically
+            designed for Autodesk Construction Cloud, ensuring your critical
+            project data is always protected and recoverable.
           </p>
         </div>
 
@@ -40,7 +40,9 @@ export const Feature1 = () => {
               className="from-muted to-mint relative flex [aspect-ratio:3.5/2.6] flex-col justify-between overflow-hidden rounded-[24px] bg-linear-to-b md:[aspect-ratio:3.8/4]"
             >
               <div className="p-8 pb-2">
-                <metric.icon className={`size-10 ${i === 0 ? 'fill-accent text-accent' : 'fill-primary text-primary'}`} />
+                <metric.icon
+                  className={`size-10 ${i === 0 ? 'fill-accent text-accent' : 'fill-primary text-primary'}`}
+                />
               </div>
               <div className="p-6">
                 <div className="text-6xl font-semibold tracking-tight">

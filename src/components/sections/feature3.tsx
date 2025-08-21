@@ -1,6 +1,11 @@
 import Image from 'next/image';
 
-import { CalendarClock, FolderSync, ShieldAlert, FileArchive } from 'lucide-react';
+import {
+  CalendarClock,
+  FolderSync,
+  ShieldAlert,
+  FileArchive,
+} from 'lucide-react';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
@@ -8,7 +13,8 @@ import { cn } from '@/lib/utils';
 const FEATURES = [
   {
     title: 'Scheduled Backups',
-    description: 'Continuous incremental protection with customizable schedules.',
+    description:
+      'Continuous incremental protection with customizable schedules.',
     content: {
       title: 'Automated protection that never sleeps',
       description: `Set it and forget it. Siinc continuously backs up your ACC projects with incremental snapshots, minimizing data loss and ensuring you always have recent recovery points available.`,
@@ -23,7 +29,7 @@ const FEATURES = [
     content: {
       title: 'Surgical precision recovery when you need it',
       description:
-        'Don\'t restore everything when you only need one file. Siinc provides granular restore capabilities down to individual files, with fast RTOs that minimize disruption to your workflows.',
+        "Don't restore everything when you only need one file. Siinc provides granular restore capabilities down to individual files, with fast RTOs that minimize disruption to your workflows.",
       image: '/images/homepage/features-tabs/2.webp',
     },
     icon: FolderSync,
@@ -61,8 +67,9 @@ export const Feature3 = () => {
             Enterprise-grade backup features
           </h2>
           <p className="text-muted-foreground flex-1 text-lg font-medium md:max-w-md md:self-end">
-            Siinc delivers comprehensive backup capabilities specifically designed
-            for the unique requirements of construction projects and ACC workflows.
+            Siinc delivers comprehensive backup capabilities specifically
+            designed for the unique requirements of construction projects and
+            ACC workflows.
           </p>
         </div>
 
@@ -76,7 +83,7 @@ export const Feature3 = () => {
               <TabsTrigger
                 key={feature.title}
                 value={feature.title}
-                className="w-full min-w-[200px] flex-1 justify-start rounded-lg px-4 py-3 text-start whitespace-normal text-gray-700 transition-colors duration-300 data-[state=active]:text-accent data-[state=active]:shadow-xl data-[state=active]:border-l-4 data-[state=active]:border-accent lg:px-6 lg:py-4 dark:text-gray-300 dark:data-[state=active]:text-accent"
+                className="data-[state=active]:text-accent data-[state=active]:border-accent dark:data-[state=active]:text-accent w-full min-w-[200px] flex-1 justify-start rounded-lg px-4 py-3 text-start whitespace-normal text-gray-700 transition-colors duration-300 data-[state=active]:border-l-4 data-[state=active]:shadow-xl lg:px-6 lg:py-4 dark:text-gray-300"
               >
                 <div>
                   <feature.icon className="size-7 md:size-8 lg:size-9" />

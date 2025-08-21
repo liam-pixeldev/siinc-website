@@ -52,7 +52,8 @@ const Navbar = () => {
         {
           title: 'Complete Control',
           href: '/#feature2',
-          description: 'Complete control over your project data with compliance ready reports',
+          description:
+            'Complete control over your project data with compliance ready reports',
         },
         {
           title: 'Enterprise Features',
@@ -67,10 +68,9 @@ const Navbar = () => {
     { label: 'Contact', href: '/contact' },
   ];
 
-  const bgColor =
-    ['/', '/faq', '/signup', '/login'].includes(pathname)
-      ? 'bg-sand-100'
-      : 'bg-background';
+  const bgColor = ['/', '/faq', '/signup', '/login'].includes(pathname)
+    ? 'bg-sand-100'
+    : 'bg-background';
 
   return (
     <header className={cn('relative z-50', bgColor)}>
@@ -103,7 +103,7 @@ const Navbar = () => {
                             <NavigationMenuLink asChild>
                               <Link
                                 href={item.href}
-                                className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-center rounded-md p-3 leading-none no-underline outline-hidden transition-colors select-none group"
+                                className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground group flex items-center rounded-md p-3 leading-none no-underline outline-hidden transition-colors select-none"
                               >
                                 <div className="space-y-1.5">
                                   <div className="text-sm leading-none font-medium group-hover:text-white">
@@ -125,7 +125,7 @@ const Navbar = () => {
                     <Link
                       href={link.href}
                       className={cn(
-                        'text-foreground font-medium p-2 lg:text-base',
+                        'text-foreground p-2 font-medium lg:text-base',
                         pathname === link.href && 'text-muted-foreground',
                       )}
                     >
@@ -140,7 +140,10 @@ const Navbar = () => {
           {/* Auth Buttons */}
           <div className="flex items-center gap-2.5">
             <Link href="/signup" className="hidden lg:block">
-              <Button variant="ghost" className="text-foreground font-medium hover:text-foreground">
+              <Button
+                variant="ghost"
+                className="text-foreground hover:text-foreground font-medium"
+              >
                 Sign up
               </Button>
             </Link>
@@ -148,7 +151,12 @@ const Navbar = () => {
               href="/login"
               className={`transition-opacity duration-300 ${isMenuOpen ? 'max-lg:pointer-events-none max-lg:opacity-0' : 'opacity-100'}`}
             >
-              <Button variant="outline" className="border-accent/30 hover:border-accent hover:bg-accent/5">Login</Button>
+              <Button
+                variant="outline"
+                className="border-accent/30 hover:border-accent hover:bg-accent/5"
+              >
+                Login
+              </Button>
             </Link>
             <div
               className={`transition-opacity duration-300 ${isMenuOpen ? 'max-lg:pointer-events-none max-lg:opacity-0' : 'opacity-100'}`}

@@ -26,7 +26,7 @@ import { cn } from '@/lib/utils';
 const TESTIMONIALS = [
   {
     quote:
-      "Siinc saved us during an ACC outage last month. We restored critical drawings in minutes and kept the project moving.",
+      'Siinc saved us during an ACC outage last month. We restored critical drawings in minutes and kept the project moving.',
     author: 'Sarah Mitchell, BIM Manager',
     company: 'Turner Construction',
     image: '/images/homepage/testimonials/amy-chase.webp',
@@ -42,7 +42,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      'We passed our ISO audit with flying colors thanks to Siinc\'s compliance reports. The auditors were impressed with our data governance.',
+      "We passed our ISO audit with flying colors thanks to Siinc's compliance reports. The auditors were impressed with our data governance.",
     author: 'Emily Rodriguez, Project Manager',
     company: 'Bechtel Corporation',
     image: '/images/homepage/testimonials/kevin-yam.webp',
@@ -58,7 +58,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      'Setup took less than 30 minutes, and now we have enterprise-grade backup for all our ACC projects. Best investment we\'ve made this year.',
+      "Setup took less than 30 minutes, and now we have enterprise-grade backup for all our ACC projects. Best investment we've made this year.",
     author: 'Rachel Park, Construction Technology Lead',
     company: 'Mortenson Construction',
     image: '/images/homepage/testimonials/jonas-kotara.webp',
@@ -93,10 +93,14 @@ export default function Testimonials() {
               Siinc protects critical construction data for firms that can't
               afford downtime or data loss.
             </p>
-            <Button asChild variant="outline" className="group border-accent/30 hover:border-accent/50 hover:bg-accent/5">
+            <Button
+              asChild
+              variant="outline"
+              className="group border-accent/30 hover:border-accent/50 hover:bg-accent/5"
+            >
               <Link href="/contact">
                 Schedule a demo
-                <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1 text-accent" />
+                <ArrowRight className="text-accent ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </div>

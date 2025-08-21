@@ -12,7 +12,12 @@ import { Button } from '../ui/button';
 
 import { cn } from '@/lib/utils';
 
-type Category = 'Getting Started' | 'Backup & Recovery' | 'Security & Compliance' | 'Pricing & Plans' | 'Technical';
+type Category =
+  | 'Getting Started'
+  | 'Backup & Recovery'
+  | 'Security & Compliance'
+  | 'Pricing & Plans'
+  | 'Technical';
 
 interface FAQItem {
   question: string;
@@ -26,7 +31,7 @@ const faqItems: FAQItem[] = [
     category: 'Getting Started',
     question: 'How long does it take to set up Siinc?',
     answer:
-      'Setup takes less than 30 minutes. Simply authorize Siinc through OAuth with your Autodesk Construction Cloud account, select the projects you want to backup, choose your storage destination, and you\'re protected. No agents or complex configurations required.',
+      "Setup takes less than 30 minutes. Simply authorize Siinc through OAuth with your Autodesk Construction Cloud account, select the projects you want to backup, choose your storage destination, and you're protected. No agents or complex configurations required.",
   },
   {
     category: 'Getting Started',
@@ -126,7 +131,7 @@ const faqItems: FAQItem[] = [
     category: 'Technical',
     question: 'Does Siinc affect ACC performance?',
     answer:
-      'No, Siinc operates independently and doesn\'t impact your ACC performance. Backups run in the background using ACC\'s APIs without affecting your team\'s daily workflows or file access speeds.',
+      "No, Siinc operates independently and doesn't impact your ACC performance. Backups run in the background using ACC's APIs without affecting your team's daily workflows or file access speeds.",
   },
 ];
 
@@ -141,15 +146,16 @@ const categories: Category[] = [
 const TOP_PADDING = 300;
 
 export const FAQPage = () => {
-  const [activeCategory, setActiveCategory] = useState<Category>('Support');
+  const [activeCategory, setActiveCategory] =
+    useState<Category>('Getting Started');
   const observerRef = useRef<IntersectionObserver | null>(null);
   const isScrollingRef = useRef(false);
   const categoryRefs = useRef<Record<Category, HTMLDivElement | null>>({
-    Support: null,
-    Account: null,
-    Features: null,
-    Security: null,
-    Other: null,
+    'Getting Started': null,
+    'Backup & Recovery': null,
+    'Security & Compliance': null,
+    'Pricing & Plans': null,
+    Technical: null,
   });
 
   const setupObserver = useCallback(() => {
@@ -251,7 +257,8 @@ export const FAQPage = () => {
             Frequently Asked Questions
           </h1>
           <p className="text-muted-foreground mx-auto mt-4 max-w-xl text-center text-balance">
-            Everything you need to know about protecting your Autodesk Construction Cloud data with Siinc.
+            Everything you need to know about protecting your Autodesk
+            Construction Cloud data with Siinc.
           </p>
         </div>
 

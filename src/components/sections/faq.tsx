@@ -37,7 +37,7 @@ const rightQuestions = [
   {
     question: 'How long does setup take?',
     answer:
-      'Setup takes less than 30 minutes. Simply authorize Siinc through OAuth, select your projects to backup, choose your storage destination, and you\'re protected. No agents or complex configurations required.',
+      "Setup takes less than 30 minutes. Simply authorize Siinc through OAuth, select your projects to backup, choose your storage destination, and you're protected. No agents or complex configurations required.",
   },
   {
     question: 'Is my data encrypted and secure?',
@@ -72,7 +72,9 @@ export const FAQ = () => {
           >
             {leftQuestions.map((item, i) => (
               <AccordionItem key={i} value={`left-${i}`}>
-                <AccordionTrigger className="hover:text-accent data-[state=open]:text-accent">{item.question}</AccordionTrigger>
+                <AccordionTrigger className="hover:text-accent data-[state=open]:text-accent">
+                  {item.question}
+                </AccordionTrigger>
                 <AccordionContent className="text-foreground">
                   {item.answer}
                 </AccordionContent>
@@ -87,7 +89,9 @@ export const FAQ = () => {
           >
             {rightQuestions.map((item, i) => (
               <AccordionItem key={i} value={`right-${i}`}>
-                <AccordionTrigger className="hover:text-accent data-[state=open]:text-accent">{item.question}</AccordionTrigger>
+                <AccordionTrigger className="hover:text-accent data-[state=open]:text-accent">
+                  {item.question}
+                </AccordionTrigger>
                 <AccordionContent className="text-foreground">
                   {item.answer}
                 </AccordionContent>

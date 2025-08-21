@@ -50,29 +50,36 @@ export const Footer = () => {
   return (
     <footer className="bg-primary/60 text-white">
       <div className="bg-primary/60">
-        <div className="border-white/20 mx-auto flex max-w-[95vw] flex-col items-center border-b py-10 text-center md:py-14 lg:py-20">
+        <div className="mx-auto flex max-w-[95vw] flex-col items-center border-b border-white/20 py-10 text-center md:py-14 lg:py-20">
           <h2 className="max-w-[800px] text-5xl leading-none font-semibold tracking-tight text-balance lg:text-6xl">
             Take back control.{' '}
             <span className="text-white/80">Your data can&apos;t wait.</span>
           </h2>
-          <Button asChild variant="secondary" size="lg" className="mt-9 bg-white hover:bg-white/90 text-primary border-0">
+          <Button
+            asChild
+            variant="secondary"
+            size="lg"
+            className="text-primary mt-9 border-0 bg-white hover:bg-white/90"
+          >
             <Link href="/contact">Start your 30-day free trial</Link>
           </Button>
         </div>
 
         {/* Navigation Section */}
-        <nav className="border-white/20 mx-auto max-w-[95vw] border-b py-12">
+        <nav className="mx-auto max-w-[95vw] border-b border-white/20 py-12">
           <div className="container">
             <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12 lg:gap-16">
               {navigation.map((section) => (
                 <div key={section.title}>
-                  <h3 className="mb-4 font-semibold text-lg">{section.title}</h3>
+                  <h3 className="mb-4 text-lg font-semibold">
+                    {section.title}
+                  </h3>
                   <ul className="space-y-3">
                     {section.links.map((link) => (
                       <li key={link.name}>
                         <Link
                           href={link.href}
-                          className="text-white/80 hover:text-white transition-colors"
+                          className="text-white/80 transition-colors hover:text-white"
                         >
                           {link.name}
                         </Link>

@@ -78,9 +78,8 @@ export default function Pricing({
             </h2>
           )}
           <p className="text-muted-foreground text-lg text-balance">
-            Start with a 30-day free trial. No credit card required.
-            Scale up or down based on your storage needs with transparent
-            per-GB pricing.
+            Start with a 30-day free trial. No credit card required. Scale up or
+            down based on your storage needs with transparent per-GB pricing.
           </p>
           <div className="inline-flex items-center gap-2">
             <Switch
@@ -104,7 +103,8 @@ export default function Pricing({
               <Card
                 className={cn(
                   'h-full border-none bg-zinc-100 dark:bg-zinc-900',
-                  plan.popular && 'bg-background relative ring-2 ring-accent shadow-accent/20 shadow-lg',
+                  plan.popular &&
+                    'bg-background ring-accent shadow-accent/20 relative shadow-lg ring-2',
                 )}
               >
                 <CardHeader>
@@ -122,7 +122,9 @@ export default function Pricing({
                   <Button
                     variant={plan.popular ? 'default' : 'outline'}
                     size="lg"
-                    className={plan.popular ? 'bg-accent hover:bg-accent/90' : ''}
+                    className={
+                      plan.popular ? 'bg-accent hover:bg-accent/90' : ''
+                    }
                   >
                     {plan.cta}
                   </Button>

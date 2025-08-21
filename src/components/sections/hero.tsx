@@ -78,7 +78,8 @@ const Hero = () => {
             </h1>
 
             <p className="text-sand-700 font-inter-tight mt-3 text-3xl leading-13 font-medium md:text-4xl lg:text-5xl">
-              Purpose-built synchronization layer that gives your business true control over BIM360 & BIM Collaborate data.
+              Purpose-built synchronization layer that gives your business true
+              control over BIM360 & BIM Collaborate data.
             </p>
           </div>
 
@@ -107,13 +108,18 @@ const Hero = () => {
 
           <div className="flex flex-wrap items-center gap-4">
             <Link href="/contact">
-              <Button aria-label="Get started" className="bg-accent hover:bg-accent/90 text-accent-foreground">Get started</Button>
+              <Button
+                aria-label="Get started"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground"
+              >
+                Get started
+              </Button>
             </Link>
             <Link href="/#feature1">
               <Button
                 aria-label="Learn more"
                 variant="outline"
-                className="bg-white hover:bg-white hover:opacity-90 text-black hover:text-black border-gray-200"
+                className="border-gray-200 bg-white text-black hover:bg-white hover:text-black hover:opacity-90"
               >
                 <span className="flex items-center gap-2 text-start whitespace-pre-wrap">
                   Learn more
