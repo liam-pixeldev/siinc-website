@@ -1,8 +1,10 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 
 import Link from 'next/link';
 
-import { Facebook, Linkedin, Twitter } from 'lucide-react';
+import { Facebook, Linkedin, Twitter, CheckCircle2, XCircle } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -32,7 +34,7 @@ const formFields = [
   {
     label: 'Number of employees',
     name: 'employees',
-    placeholder: 'Company name',
+    placeholder: 'e.g., 50-100',
     type: 'text',
     optional: true,
   },
@@ -44,7 +46,72 @@ const formFields = [
   },
 ];
 
+type SubmissionState = 'idle' | 'submitting' | 'success' | 'error';
+
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    company: '',
+    employees: '',
+    message: '',
+  });
+  const [submissionState, setSubmissionState] = useState<SubmissionState>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmissionState('submitting');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      setSubmissionState('success');
+    } catch (error) {
+      setSubmissionState('error');
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong. Please try again.'
+      );
+    }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      fullName: '',
+      email: '',
+      company: '',
+      employees: '',
+      message: '',
+    });
+    setSubmissionState('idle');
+    setErrorMessage('');
+  };
+
   return (
     <section className="py-16 md:py-28 lg:py-32">
       <div className="container max-w-4xl">
@@ -59,36 +126,59 @@ export default function Contact() {
           {/* Contact Information */}
           <div className="space-y-10 md:pe-14">
             <div>
-              <h2 className="text-lg font-semibold">Corporate office</h2>
-              <p className="text-muted-foreground mt-3 text-lg font-medium tracking-tight">
-                1 Carlsberg Close
-                <br />
-                1260 Hillview, Australia
-              </p>
+              <h2 className="text-lg font-semibold">Our Offices</h2>
+              <div className="mt-3 space-y-6">
+                <div>
+                  <p className="font-medium">Sydney</p>
+                  <p className="text-muted-foreground text-sm">
+                    Level 35, Tower One Barangaroo
+                    <br />
+                    100 Barangaroo Avenue
+                    <br />
+                    Sydney NSW 2000
+                  </p>
+                </div>
+                <div>
+                  <p className="font-medium">New York</p>
+                  <p className="text-muted-foreground text-sm">
+                    One World Trade Center
+                    <br />
+                    Lower Manhattan
+                    <br />
+                    New York 10007
+                  </p>
+                </div>
+                <div>
+                  <p className="font-medium">London</p>
+                  <p className="text-muted-foreground text-sm">
+                    Level 18, 40 Bank Street
+                    <br />
+                    Canary Wharf
+                    <br />
+                    London E14 5NR
+                  </p>
+                </div>
+                <div>
+                  <p className="font-medium">Singapore</p>
+                  <p className="text-muted-foreground text-sm">
+                    Level 39, Marina Bay Financial Centre
+                    <br />
+                    Tower 2, 10 Marina Boulevard
+                    <br />
+                    Singapore 018983
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div>
               <h2 className="text-lg font-semibold">Email us</h2>
-              <div className="mt-3 space-y-2">
-                <div>
-                  <p>Careers</p>
-                  <Link
-                    href="mailto:careers@streamline.com"
-                    className="text-muted-foreground mt-3 text-lg font-medium tracking-tight"
-                  >
-                    careers@streamline.com
-                  </Link>
-                </div>
-                <div>
-                  <p>Press</p>
-                  <Link
-                    href="mailto:press@streamline.com"
-                    className="text-muted-foreground mt-3 text-lg font-medium tracking-tight"
-                  >
-                    press@streamline.com
-                  </Link>
-                </div>
-              </div>
+              <Link
+                href="mailto:get@siinc.io"
+                className="text-muted-foreground mt-3 text-lg font-medium tracking-tight"
+              >
+                get@siinc.io
+              </Link>
             </div>
 
             <div>
@@ -116,43 +206,91 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Inquiry Form */}
+          {/* Inquiry Form / Success / Error Message */}
           <div className="flex-1 md:ps-8">
             <h2 className="text-lg font-semibold">Inquiries</h2>
-            <form className="mt-5 space-y-5">
-              {formFields.map((field) => (
-                <div key={field.name} className="flex flex-col gap-2">
-                  <Label>
-                    {field.label}
-                    {field.optional && (
-                      <span className="text-muted-foreground/60">
-                        {' '}
-                        (optional)
-                      </span>
-                    )}
-                  </Label>
-                  {field.type === 'textarea' ? (
-                    <Textarea
-                      name={field.name}
-                      placeholder={field.placeholder}
-                      className="min-h-[120px] resize-none"
-                    />
-                  ) : (
-                    <Input
-                      type={field.type}
-                      name={field.name}
-                      placeholder={field.placeholder}
-                    />
-                  )}
-                </div>
-              ))}
-
-              <div className="flex justify-end">
-                <Button type="submit" size="lg">
-                  Submit
+            
+            {submissionState === 'success' ? (
+              <div className="mt-5 flex flex-col items-center justify-center py-12 text-center">
+                <CheckCircle2 className="size-16 text-green-600 mb-4" />
+                <h3 className="text-2xl font-semibold mb-2">Thank you for contacting us!</h3>
+                <p className="text-muted-foreground mb-6">
+                  We'll get back to you as soon as possible.
+                </p>
+                <Button onClick={resetForm} size="lg">
+                  Submit another inquiry
                 </Button>
               </div>
-            </form>
+            ) : submissionState === 'error' ? (
+              <div className="mt-5 flex flex-col items-center justify-center py-12 text-center">
+                <XCircle className="size-16 text-red-600 mb-4" />
+                <h3 className="text-2xl font-semibold mb-2">Something went wrong</h3>
+                <p className="text-muted-foreground mb-2">
+                  {errorMessage || 'Please try again or email us directly.'}
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  You can also reach us directly at{' '}
+                  <Link href="mailto:get@siinc.io" className="text-primary underline">
+                    get@siinc.io
+                  </Link>
+                </p>
+                <div className="flex gap-3">
+                  <Button onClick={resetForm} variant="outline" size="lg">
+                    Try again
+                  </Button>
+                  <Button asChild size="lg">
+                    <Link href="mailto:get@siinc.io">Email directly</Link>
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="mt-5 space-y-5">
+                {formFields.map((field) => (
+                  <div key={field.name} className="flex flex-col gap-2">
+                    <Label>
+                      {field.label}
+                      {field.optional && (
+                        <span className="text-muted-foreground/60">
+                          {' '}
+                          (optional)
+                        </span>
+                      )}
+                    </Label>
+                    {field.type === 'textarea' ? (
+                      <Textarea
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        className="min-h-[120px] resize-none"
+                        value={formData[field.name as keyof typeof formData]}
+                        onChange={handleInputChange}
+                        required={!field.optional}
+                        disabled={submissionState === 'submitting'}
+                      />
+                    ) : (
+                      <Input
+                        type={field.type}
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        value={formData[field.name as keyof typeof formData]}
+                        onChange={handleInputChange}
+                        required={!field.optional}
+                        disabled={submissionState === 'submitting'}
+                      />
+                    )}
+                  </div>
+                ))}
+
+                <div className="flex justify-end">
+                  <Button 
+                    type="submit" 
+                    size="lg"
+                    disabled={submissionState === 'submitting'}
+                  >
+                    {submissionState === 'submitting' ? 'Sending...' : 'Submit'}
+                  </Button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </div>

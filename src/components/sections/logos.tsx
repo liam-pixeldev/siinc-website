@@ -5,67 +5,39 @@ import Link from 'next/link';
 
 const ITEMS = [
   {
-    name: 'Mercury',
-    src: '/images/logos/mercury.svg',
-    width: 143,
-    height: 26,
-    href: 'https://mercury.com',
+    name: 'Autodesk Construction Cloud',
+    src: '/images/logos/autodesk-cloud.png',
+    href: 'https://construction.autodesk.com',
   },
   {
-    name: 'Watershed',
-    src: '/images/logos/watershed.svg',
-    width: 154,
-    height: 31,
-    href: 'https://watershed.com',
+    name: 'AWS',
+    src: '/images/logos/aws.png',
+    href: 'https://aws.amazon.com',
   },
   {
-    name: 'Retool',
-    src: '/images/logos/retool.svg',
-    width: 113,
-    height: 22,
-    href: 'https://retool.com',
+    name: 'Autodesk BIM',
+    src: '/images/logos/autodesk-bim.png',
+    href: 'https://www.autodesk.com/solutions/bim',
   },
   {
-    name: 'Descript',
-    src: '/images/logos/descript.svg',
-    width: 112,
-    height: 27,
-    href: 'https://descript.com',
+    name: 'Microsoft Azure',
+    src: '/images/logos/azure.png',
+    href: 'https://azure.microsoft.com',
   },
   {
-    name: 'Perplexity',
-    src: '/images/logos/perplexity.svg',
-    width: 141,
-    height: 32,
-    href: 'https://perplexity.ai',
+    name: 'Amazon S3',
+    src: '/images/logos/s3.png',
+    href: 'https://aws.amazon.com/s3/',
   },
   {
-    name: 'Monzo',
-    src: '/images/logos/monzo.svg',
-    width: 104,
-    height: 18,
-    href: 'https://monzo.com',
+    name: 'BIM 360',
+    src: '/images/logos/bim360.png',
+    href: 'https://www.autodesk.com/bim-360/',
   },
   {
-    name: 'Ramp',
-    src: '/images/logos/ramp.svg',
-    width: 105,
-    height: 28,
-    href: 'https://ramp.com',
-  },
-  {
-    name: 'Raycast',
-    src: '/images/logos/raycast.svg',
-    width: 128,
-    height: 33,
-    href: 'https://raycast.com',
-  },
-  {
-    name: 'Arc',
-    src: '/images/logos/arc.svg',
-    width: 90,
-    height: 28,
-    href: 'https://arc.com',
+    name: 'Autodesk Authorized Developer',
+    src: '/images/logos/authorized-dev.png',
+    href: 'https://www.autodesk.com/developer-network',
   },
 ];
 
@@ -74,10 +46,10 @@ export default function Logos() {
     <section className="bg-sand-100 overflow-hidden py-12 md:py-20 lg:py-24">
       <div className="container text-center">
         <h2 className="text-xl font-semibold tracking-tight text-balance lg:text-3xl">
-          Powering the world&apos;s best product teams.
+          Trusted by Leading Partners &amp; Integrators
           <br />
           <span className="text-muted-foreground">
-            From next-gen startups to established enterprises.
+            Delivering enterprise-grade backup solutions across the construction industry.
           </span>
         </h2>
       </div>
@@ -91,14 +63,14 @@ export default function Logos() {
                 href={logo.href}
                 target="_blank"
                 key={index}
-                className="p-6"
+                className="p-6 flex items-center justify-center"
               >
                 <Image
                   src={logo.src}
                   alt={logo.name}
-                  width={logo.width}
-                  height={logo.height}
-                  className="object-contain transition-opacity hover:opacity-70"
+                  width={120}
+                  height={40}
+                  className="object-contain h-[40px] w-auto grayscale opacity-50 transition-opacity hover:opacity-70"
                 />
               </Link>
             ))}
@@ -110,14 +82,14 @@ export default function Logos() {
                 href={logo.href}
                 target="_blank"
                 key={index}
-                className="p-6"
+                className="p-6 flex items-center justify-center"
               >
                 <Image
                   src={logo.src}
                   alt={logo.name}
-                  width={logo.width}
-                  height={logo.height}
-                  className="object-contain transition-opacity hover:opacity-70"
+                  width={120}
+                  height={40}
+                  className="object-contain h-[40px] w-auto grayscale opacity-50 transition-opacity hover:opacity-70"
                 />
               </Link>
             ))}

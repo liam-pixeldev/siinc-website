@@ -96,11 +96,11 @@ export default function Testimonials() {
             <Button
               asChild
               variant="outline"
-              className="group border-accent/30 hover:border-accent/50 hover:bg-accent/5"
+              className="group border-border hover:border-primary/50 hover:bg-primary/5 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:ring-offset-0"
             >
               <Link href="/contact">
                 Schedule a demo
-                <ArrowRight className="text-accent ml-2 size-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="text-primary ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </div>

@@ -26,7 +26,6 @@ const navigation = [
     title: 'Resources',
     links: [
       { name: 'FAQ', href: '/faq' },
-      { name: 'Documentation', href: '#' },
       { name: 'Support', href: '/contact' },
     ],
   },
@@ -61,7 +60,7 @@ export const Footer = () => {
             size="lg"
             className="text-primary mt-9 border-0 bg-white hover:bg-white/90"
           >
-            <Link href="/contact">Start your 30-day free trial</Link>
+            <Link href="/contact">Get started Today</Link>
           </Button>
         </div>
 

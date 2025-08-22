@@ -63,7 +63,7 @@ const Navbar = () => {
       ],
     },
     { label: 'Learn more', href: '/#feature1' },
-    { label: 'Pricing', href: '/#pricing' },
+    { label: 'Pricing', href: '/pricing' },
     { label: 'FAQ', href: '/faq' },
     { label: 'Contact', href: '/contact' },
   ];
@@ -75,70 +75,74 @@ const Navbar = () => {
   return (
     <header className={cn('relative z-50', bgColor)}>
       <div className="max-w-9xl container">
-        <div className="flex items-center justify-between py-3">
+        <div className="grid grid-cols-3 items-center py-3">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/images/logos/logo.png"
-              alt="Siinc logo"
-              width={120}
-              height={40}
-              className="object-contain"
-            />
-          </Link>
+          <div className="flex justify-start">
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/images/logos/logo.png"
+                alt="Siinc logo"
+                width={120}
+                height={40}
+                className="object-contain"
+              />
+            </Link>
+          </div>
 
-          {/* Desktop Navigation */}
-          <NavigationMenu className="hidden items-center gap-8 lg:flex">
-            <NavigationMenuList>
-              {ITEMS.map((link) =>
-                link.dropdownItems ? (
-                  <NavigationMenuItem key={link.label}>
-                    <NavigationMenuTrigger className="text-foreground bg-transparent font-medium lg:text-base">
-                      {link.label}
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="w-[400px] p-4">
-                        {link.dropdownItems.map((item) => (
-                          <li key={item.title}>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                href={item.href}
-                                className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground group flex items-center rounded-md p-3 leading-none no-underline outline-hidden transition-colors select-none"
-                              >
-                                <div className="space-y-1.5">
-                                  <div className="text-sm leading-none font-medium group-hover:text-white">
-                                    {item.title}
+          {/* Desktop Navigation - Center */}
+          <div className="flex justify-center">
+            <NavigationMenu className="hidden items-center gap-8 lg:flex">
+              <NavigationMenuList>
+                {ITEMS.map((link) =>
+                  link.dropdownItems ? (
+                    <NavigationMenuItem key={link.label}>
+                      <NavigationMenuTrigger className="text-foreground bg-transparent font-medium lg:text-base">
+                        {link.label}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="w-[400px] p-4">
+                          {link.dropdownItems.map((item) => (
+                            <li key={item.title}>
+                              <NavigationMenuLink asChild>
+                                <Link
+                                  href={item.href}
+                                  className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground group flex items-center rounded-md p-3 leading-none no-underline outline-hidden transition-colors select-none"
+                                >
+                                  <div className="space-y-1.5">
+                                    <div className="text-sm leading-none font-medium group-hover:text-white">
+                                      {item.title}
+                                    </div>
+                                    <p className="text-muted-foreground line-clamp-2 text-sm leading-tight group-hover:text-white/90">
+                                      {item.description}
+                                    </p>
                                   </div>
-                                  <p className="text-muted-foreground line-clamp-2 text-sm leading-tight group-hover:text-white/90">
-                                    {item.description}
-                                  </p>
-                                </div>
-                              </Link>
-                            </NavigationMenuLink>
-                          </li>
-                        ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                ) : (
-                  <NavigationMenuItem key={link.label}>
-                    <Link
-                      href={link.href}
-                      className={cn(
-                        'text-foreground p-2 font-medium lg:text-base',
-                        pathname === link.href && 'text-muted-foreground',
-                      )}
-                    >
-                      {link.label}
-                    </Link>
-                  </NavigationMenuItem>
-                ),
-              )}
-            </NavigationMenuList>
-          </NavigationMenu>
+                                </Link>
+                              </NavigationMenuLink>
+                            </li>
+                          ))}
+                        </ul>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  ) : (
+                    <NavigationMenuItem key={link.label}>
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          'text-foreground p-2 font-medium whitespace-nowrap lg:text-base',
+                          pathname === link.href && 'text-muted-foreground',
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    </NavigationMenuItem>
+                  ),
+                )}
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
 
-          {/* Auth Buttons */}
-          <div className="flex items-center gap-2.5">
+          {/* Auth Buttons - Right */}
+          <div className="flex items-center justify-end gap-2.5">
             <Link href="/signup" className="hidden lg:block">
               <Button
                 variant="ghost"
@@ -153,7 +157,7 @@ const Navbar = () => {
             >
               <Button
                 variant="outline"
-                className="border-accent/30 hover:border-accent hover:bg-accent/5"
+                className="border-border hover:border-primary/50 hover:bg-primary/5 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:ring-offset-0"
               >
                 Login
               </Button>

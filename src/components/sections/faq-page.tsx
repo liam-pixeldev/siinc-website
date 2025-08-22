@@ -270,7 +270,7 @@ export const FAQPage = () => {
                 variant="ghost"
                 key={category}
                 onClick={() => handleCategoryClick(category)}
-                className={`justify-start text-left text-xl transition-colors ${
+                className={`justify-start text-left text-base whitespace-normal h-auto py-2 px-3 transition-colors ${
                   activeCategory === category
                     ? 'font-semibold'
                     : 'font-normal hover:opacity-75'
