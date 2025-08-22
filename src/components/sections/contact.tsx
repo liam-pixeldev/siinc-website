@@ -4,7 +4,13 @@ import React, { useState } from 'react';
 
 import Link from 'next/link';
 
-import { Facebook, Linkedin, Twitter, CheckCircle2, XCircle } from 'lucide-react';
+import {
+  Facebook,
+  Linkedin,
+  Twitter,
+  CheckCircle2,
+  XCircle,
+} from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -56,11 +62,12 @@ export default function Contact() {
     employees: '',
     message: '',
   });
-  const [submissionState, setSubmissionState] = useState<SubmissionState>('idle');
+  const [submissionState, setSubmissionState] =
+    useState<SubmissionState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -95,7 +102,7 @@ export default function Contact() {
       setErrorMessage(
         error instanceof Error
           ? error.message
-          : 'Something went wrong. Please try again.'
+          : 'Something went wrong. Please try again.',
       );
     }
   };
@@ -209,11 +216,12 @@ export default function Contact() {
           {/* Inquiry Form / Success / Error Message */}
           <div className="flex-1 md:ps-8">
             <h2 className="text-lg font-semibold">Inquiries</h2>
-            
             {submissionState === 'success' ? (
               <div className="mt-5 flex flex-col items-center justify-center py-12 text-center">
-                <CheckCircle2 className="size-16 text-green-600 mb-4" />
-                <h3 className="text-2xl font-semibold mb-2">Thank you for contacting us!</h3>
+                <CheckCircle2 className="mb-4 size-16 text-green-600" />
+                <h3 className="mb-2 text-2xl font-semibold">
+                  Thank you for contacting us!
+                </h3>
                 <p className="text-muted-foreground mb-6">
                   We'll get back to you as soon as possible.
                 </p>
@@ -223,14 +231,19 @@ export default function Contact() {
               </div>
             ) : submissionState === 'error' ? (
               <div className="mt-5 flex flex-col items-center justify-center py-12 text-center">
-                <XCircle className="size-16 text-red-600 mb-4" />
-                <h3 className="text-2xl font-semibold mb-2">Something went wrong</h3>
+                <XCircle className="mb-4 size-16 text-red-600" />
+                <h3 className="mb-2 text-2xl font-semibold">
+                  Something went wrong
+                </h3>
                 <p className="text-muted-foreground mb-2">
                   {errorMessage || 'Please try again or email us directly.'}
                 </p>
                 <p className="text-muted-foreground mb-6">
                   You can also reach us directly at{' '}
-                  <Link href="mailto:get@siinc.io" className="text-primary underline">
+                  <Link
+                    href="mailto:get@siinc.io"
+                    className="text-primary underline"
+                  >
                     get@siinc.io
                   </Link>
                 </p>
@@ -281,8 +294,8 @@ export default function Contact() {
                 ))}
 
                 <div className="flex justify-end">
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     size="lg"
                     disabled={submissionState === 'submitting'}
                   >

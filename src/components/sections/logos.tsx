@@ -49,7 +49,8 @@ export default function Logos() {
           Trusted by Leading Partners &amp; Integrators
           <br />
           <span className="text-muted-foreground">
-            Delivering enterprise-grade backup solutions across the construction industry.
+            Delivering enterprise-grade backup solutions across the construction
+            industry.
           </span>
         </h2>
       </div>
@@ -63,14 +64,14 @@ export default function Logos() {
                 href={logo.href}
                 target="_blank"
                 key={index}
-                className="p-6 flex items-center justify-center"
+                className="flex items-center justify-center p-6"
               >
                 <Image
                   src={logo.src}
                   alt={logo.name}
                   width={120}
                   height={40}
-                  className="object-contain h-[40px] w-auto grayscale opacity-50 transition-opacity hover:opacity-70"
+                  className="h-[40px] w-auto object-contain opacity-50 grayscale transition-opacity hover:opacity-70"
                 />
               </Link>
             ))}
@@ -82,14 +83,14 @@ export default function Logos() {
                 href={logo.href}
                 target="_blank"
                 key={index}
-                className="p-6 flex items-center justify-center"
+                className="flex items-center justify-center p-6"
               >
                 <Image
                   src={logo.src}
                   alt={logo.name}
                   width={120}
                   height={40}
-                  className="object-contain h-[40px] w-auto grayscale opacity-50 transition-opacity hover:opacity-70"
+                  className="h-[40px] w-auto object-contain opacity-50 grayscale transition-opacity hover:opacity-70"
                 />
               </Link>
             ))}

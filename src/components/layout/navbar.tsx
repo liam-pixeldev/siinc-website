@@ -157,7 +157,7 @@ const Navbar = () => {
             >
               <Button
                 variant="outline"
-                className="border-border hover:border-primary/50 hover:bg-primary/5 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:ring-offset-0"
+                className="border-border hover:border-primary/50 hover:bg-primary/5 focus-visible:ring-primary/30 focus-visible:ring-1 focus-visible:ring-offset-0"
               >
                 Login
               </Button>

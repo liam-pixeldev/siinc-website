@@ -96,7 +96,7 @@ export default function Testimonials() {
             <Button
               asChild
               variant="outline"
-              className="group border-border hover:border-primary/50 hover:bg-primary/5 focus-visible:ring-1 focus-visible:ring-primary/30 focus-visible:ring-offset-0"
+              className="group border-border hover:border-primary/50 hover:bg-primary/5 focus-visible:ring-primary/30 focus-visible:ring-1 focus-visible:ring-offset-0"
             >
               <Link href="/contact">
                 Schedule a demo

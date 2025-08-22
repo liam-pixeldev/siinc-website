@@ -134,8 +134,6 @@ This email was sent from the contact form at siinc.io
       { status: 200 },
     );
   } catch (error) {
-    console.error('Error sending email:', error);
-
     // Check if it's a Postmark error
     if (error instanceof Error) {
       // Don't expose internal error details to client
