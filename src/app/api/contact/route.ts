@@ -1,12 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import * as postmark from 'postmark';
-
-// Initialize Postmark client
-const client = new postmark.ServerClient(
-  process.env.POSTMARK_SERVER_TOKEN || '',
-);
-
 // Rate limiting: Simple in-memory store (for production, use Redis or similar)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 
@@ -33,7 +26,17 @@ function checkRateLimit(ip: string): boolean {
 }
 
 export async function POST(request: NextRequest) {
+  // Note: API routes don't work with static export (output: 'export')
+  // This will only work if deployed to a server that supports API routes
+
   try {
+    // Dynamically import postmark to avoid build issues
+    const postmark = await import('postmark');
+
+    // Initialize Postmark client only if token is available
+    const client = process.env.POSTMARK_SERVER_TOKEN
+      ? new postmark.ServerClient(process.env.POSTMARK_SERVER_TOKEN)
+      : null;
     // Get client IP for rate limiting
     const ip =
       request.headers.get('x-forwarded-for')?.split(',')[0] ||
@@ -116,6 +119,22 @@ ${sanitizedData.message}
 ---
 This email was sent from the contact form at siinc.io
     `;
+
+    // Check if client is available
+    if (!client) {
+      // In development/build without Postmark token, just log the message
+      if (process.env.NODE_ENV === 'development') {
+        // Development mode - just return success
+        return NextResponse.json(
+          { success: true, message: 'Email logged (development mode)' },
+          { status: 200 },
+        );
+      }
+      return NextResponse.json(
+        { error: 'Email service not configured.' },
+        { status: 503 },
+      );
+    }
 
     // Send email via Postmark
     await client.sendEmail({
