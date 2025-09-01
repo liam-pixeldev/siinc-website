@@ -20,7 +20,7 @@ export const Feature1 = () => {
   ];
 
   return (
-    <section id="feature1" className="py-16 md:py-28 lg:py-32">
+    <section id="resilience-protection" className="py-16 md:py-28 lg:py-32">
       <div className="container">
         <div className="flex flex-col gap-3 md:flex-row">
           <h2 className="flex-1 text-3xl leading-tight font-semibold tracking-tight text-balance md:text-4xl lg:text-5xl">

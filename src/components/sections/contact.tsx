@@ -4,13 +4,7 @@ import React, { useState } from 'react';
 
 import Link from 'next/link';
 
-import {
-  Facebook,
-  Linkedin,
-  Twitter,
-  CheckCircle2,
-  XCircle,
-} from 'lucide-react';
+import { CheckCircle2, XCircle } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -34,13 +28,6 @@ const formFields = [
     label: 'Company name',
     name: 'company',
     placeholder: 'Company name',
-    type: 'text',
-    optional: true,
-  },
-  {
-    label: 'Number of employees',
-    name: 'employees',
-    placeholder: 'e.g., 50-100',
     type: 'text',
     optional: true,
   },
@@ -126,7 +113,8 @@ export default function Contact() {
           Contact us
         </h1>
         <p className="text-muted-foreground mt-4 text-center">
-          Hopefully this form gets through our spam filters.
+          Get in touch with our team to learn how Siinc can protect your ACC
+          data.
         </p>
 
         <div className="mt-8 flex max-md:flex-col md:mt-12 md:divide-x lg:mt-20">
@@ -178,7 +166,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div>
+            {/* <div>
               <h2 className="text-lg font-semibold">Email us</h2>
               <Link
                 href="mailto:get@siinc.io"
@@ -186,31 +174,7 @@ export default function Contact() {
               >
                 get@siinc.io
               </Link>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold">Follow us</h2>
-              <div className="mt-3 flex gap-6">
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <Facebook className="size-6" />
-                </Link>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <Twitter className="size-6" />
-                </Link>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <Linkedin className="size-6" />
-                </Link>
-              </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Inquiry Form / Success / Error Message */}

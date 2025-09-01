@@ -92,7 +92,6 @@ export async function POST(request: NextRequest) {
           <p style="margin: 10px 0;"><strong>Name:</strong> ${sanitizedData.fullName}</p>
           <p style="margin: 10px 0;"><strong>Email:</strong> ${sanitizedData.email}</p>
           <p style="margin: 10px 0;"><strong>Company:</strong> ${sanitizedData.company}</p>
-          <p style="margin: 10px 0;"><strong>Number of Employees:</strong> ${sanitizedData.employees}</p>
         </div>
         <div style="background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
           <h3 style="color: #333; margin-top: 0;">Message:</h3>
@@ -111,7 +110,6 @@ New Contact Form Submission
 Name: ${sanitizedData.fullName}
 Email: ${sanitizedData.email}
 Company: ${sanitizedData.company}
-Number of Employees: ${sanitizedData.employees}
 
 Message:
 ${sanitizedData.message}
@@ -138,8 +136,8 @@ This email was sent from the contact form at siinc.io
 
     // Send email via Postmark
     await client.sendEmail({
-      From: 'noreply@siinc.io', // You'll need to verify this sender in Postmark
-      To: 'get@siinc.io',
+      From: 'website@siinc.io', // You'll need to verify this sender in Postmark
+      To: 'Info@nexsysit.com.au',
       Subject: `Contact Form: ${sanitizedData.fullName} - ${sanitizedData.company}`,
       HtmlBody: htmlBody,
       TextBody: textBody,

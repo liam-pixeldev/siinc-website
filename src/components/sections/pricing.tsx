@@ -1,50 +1,64 @@
 'use client';
 
-import { useState } from 'react';
+import Link from 'next/link';
 
 import { Check } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
 
 const plans = [
   {
-    name: 'Starter',
-    monthlyPrice: 'From $299',
-    annualPrice: 'From $2,990',
+    name: 'Basic',
+    monthlyPrice: '$1.50 / GB / Month',
+    annualPrice: '$1.50 / GB / Month',
+    monthlyPerUnit: 'Minimum charge: $60',
+    annualPerUnit: 'Minimum charge: $60',
     features: [
-      'Up to 100GB storage',
       'Daily incremental backups',
       'File-level restore',
       'Email support',
     ],
-    cta: 'Start free trial',
+    cta: 'Get started',
+  },
+  {
+    name: 'Standard',
+    monthlyPrice: '$1.35 / GB / Month',
+    annualPrice: '$1.35 / GB / Month',
+    monthlyPerUnit: 'Minimum: 100GB',
+    annualPerUnit: 'Minimum: 100GB',
+    features: [
+      'Hourly incremental backups',
+      'Granular restore (file/folder/project)',
+      'Compliance reports & audit logs',
+      'BYO storage (Azure/AWS/S3)',
+      'Email + priority support',
+    ],
+    cta: 'Get started',
+    popular: true,
   },
   {
     name: 'Professional',
-    monthlyPrice: 'Per GB',
-    annualPrice: 'Per GB/year',
-    monthlyPerUnit: 'Usage-based pricing',
-    annualPerUnit: 'Volume discounts available',
+    monthlyPrice: '$1.10 / GB / Month',
+    annualPrice: '$1.10 / GB / Month',
+    monthlyPerUnit: 'Minimum: 500GB',
+    annualPerUnit: 'Minimum: 500GB',
     features: [
-      'Unlimited storage (pay per GB)',
       'Hourly incremental backups',
       'Granular restore (file/folder/project)',
       'Compliance reports & audit logs',
       'BYO storage (Azure/AWS/S3)',
       '24×7 priority support',
     ],
-    cta: 'Get instant quote',
-    popular: true,
+    cta: 'Get started',
   },
   {
     name: 'Enterprise',
     monthlyPrice: 'Custom',
     annualPrice: 'Custom',
-    monthlyPerUnit: 'Contact sales',
-    annualPerUnit: 'Volume licensing',
+    monthlyPerUnit: 'Volume pricing (5TB+)',
+    annualPerUnit: 'Volume pricing (5TB+)',
     features: [
       'All Professional features',
       'Custom backup schedules',
@@ -53,7 +67,7 @@ const plans = [
       'Custom integrations',
       'On-premises deployment option',
     ],
-    cta: 'Contact sales',
+    cta: 'Get started',
   },
 ];
 
@@ -62,8 +76,6 @@ export default function Pricing({
 }: {
   headerTag?: 'h1' | 'h2';
 }) {
-  const [isAnnual, setIsAnnual] = useState(true);
-
   return (
     <section className="py-16 md:py-28 lg:py-32">
       <div className="container">
@@ -80,18 +92,11 @@ export default function Pricing({
           <p className="text-muted-foreground text-lg text-balance">
             Start with a 30-day free trial. No credit card required. Scale up or
             down based on your storage needs with transparent per-GB pricing.
+            All prices in USD.
           </p>
-          <div className="inline-flex items-center gap-2">
-            <Switch
-              checked={isAnnual}
-              onCheckedChange={setIsAnnual}
-              aria-label="Toggle annual billing"
-            />
-            <span className="text-sm font-medium">Billed annually</span>
-          </div>
         </div>
 
-        <div className="mt-8 grid gap-8 sm:grid-cols-2 md:mt-12 lg:mt-20 lg:grid-cols-3">
+        <div className="mt-8 grid gap-8 sm:grid-cols-2 md:mt-12 lg:mt-20 lg:grid-cols-4">
           {plans.map((plan) => (
             <div
               key={plan.name}
@@ -111,22 +116,21 @@ export default function Pricing({
                   <h3 className="text-2xl font-semibold">{plan.name}</h3>
                   <div className="mt-2">
                     <p className="text-muted-foreground text-lg font-medium">
-                      {isAnnual ? plan.annualPrice : plan.monthlyPrice}
-                      {(plan.monthlyPerUnit || plan.annualPerUnit) &&
-                        ' ' +
-                          (isAnnual ? plan.annualPerUnit : plan.monthlyPerUnit)}
+                      {plan.monthlyPrice}
+                      {plan.monthlyPerUnit && ' ' + plan.monthlyPerUnit}
                     </p>
                   </div>
                 </CardHeader>
                 <CardContent className="flex flex-col space-y-6">
                   <Button
+                    asChild
                     variant={plan.popular ? 'default' : 'outline'}
                     size="lg"
                     className={
                       plan.popular ? 'bg-accent hover:bg-accent/90' : ''
                     }
                   >
-                    {plan.cta}
+                    <Link href="/contact">Get started</Link>
                   </Button>
 
                   <div className="space-y-4">

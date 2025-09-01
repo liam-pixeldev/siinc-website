@@ -45,24 +45,24 @@ const Navbar = () => {
       dropdownItems: [
         {
           title: 'Resilience & Protection',
-          href: '/#feature1',
+          href: '/#resilience-protection',
           description:
             'Built for Construction Cloud resilience with enterprise-grade features',
         },
         {
           title: 'Complete Control',
-          href: '/#feature2',
+          href: '/#complete-control',
           description:
             'Complete control over your project data with compliance ready reports',
         },
         {
           title: 'Enterprise Features',
-          href: '/#feature3',
+          href: '/#enterprise-features',
           description: 'Enterprise-grade backup features for ACC workflows',
         },
       ],
     },
-    { label: 'Learn more', href: '/#feature1' },
+    { label: 'Learn more', href: '/#resilience-protection' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'FAQ', href: '/faq' },
     { label: 'Contact', href: '/contact' },
@@ -143,16 +143,8 @@ const Navbar = () => {
 
           {/* Auth Buttons - Right */}
           <div className="flex items-center justify-end gap-2.5">
-            <Link href="/signup" className="hidden lg:block">
-              <Button
-                variant="ghost"
-                className="text-foreground hover:text-foreground font-medium"
-              >
-                Sign up
-              </Button>
-            </Link>
             <Link
-              href="/login"
+              href="https://app.siinc.io"
               className={`transition-opacity duration-300 ${isMenuOpen ? 'max-lg:pointer-events-none max-lg:opacity-0' : 'opacity-100'}`}
             >
               <Button
@@ -205,20 +197,11 @@ const Navbar = () => {
       >
         <div className="mt-8 space-y-2">
           <Link
-            href="/signup"
+            href="https://app.siinc.io"
             className="block"
             onClick={() => setIsMenuOpen(false)}
           >
             <Button size="sm" className="w-full">
-              Sign up
-            </Button>
-          </Link>
-          <Link
-            href="/login"
-            className="block"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <Button size="sm" className="w-full" variant="outline">
               Login
             </Button>
           </Link>

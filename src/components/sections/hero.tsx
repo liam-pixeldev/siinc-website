@@ -115,7 +115,7 @@ const Hero = () => {
                 Get started
               </Button>
             </Link>
-            <Link href="/#feature1">
+            <Link href="/#resilience-protection">
               <Button
                 aria-label="Learn more"
                 variant="outline"

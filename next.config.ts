@@ -3,7 +3,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
-  output: 'export',
+  // output: 'export', // Commented out to enable API routes
   images: {
     unoptimized: true,
 

@@ -77,7 +77,7 @@ const ITEMS: ItemType[] = [
 
 export const Feature2 = () => {
   return (
-    <section id="feature2" className="bg-muted py-16 md:py-28 lg:py-32">
+    <section id="complete-control" className="bg-muted py-16 md:py-28 lg:py-32">
       <div className="container">
         <h2 className="text-center text-3xl font-semibold tracking-tight text-balance sm:text-4xl md:text-5xl lg:text-6xl">
           Complete control over your project data

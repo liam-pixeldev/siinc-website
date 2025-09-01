@@ -1,23 +1,21 @@
 import Link from 'next/link';
 
-import { Facebook, Linkedin, Twitter } from 'lucide-react';
-
 import { Button } from '@/components/ui/button';
 
 const navigation = [
   {
     title: 'Product',
     links: [
-      { name: 'Features', href: '/#feature1' },
-      { name: 'Backup & Recovery', href: '/#feature2' },
-      { name: 'Enterprise', href: '/#feature3' },
+      { name: 'Features', href: '/#resilience-protection' },
+      { name: 'Backup & Recovery', href: '/#complete-control' },
+      { name: 'Enterprise', href: '/#enterprise-features' },
       { name: 'Pricing', href: '/#pricing' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { name: 'Learn more', href: '/#feature1' },
+      { name: 'Learn more', href: '/#resilience-protection' },
       { name: 'Contact', href: '/contact' },
       { name: 'Schedule Demo', href: '/contact' },
     ],
@@ -31,19 +29,15 @@ const navigation = [
   },
   {
     title: 'Legal',
-    links: [
-      { name: 'Terms of Service', href: '/terms' },
-      { name: 'Privacy Policy', href: '/privacy' },
-      { name: 'Compliance', href: '#' },
-    ],
+    links: [{ name: 'Privacy Policy', href: '/privacy' }],
   },
 ];
 
-const socialLinks = [
-  { icon: Facebook, href: 'https://facebook.com' },
-  { icon: Twitter, href: 'https://twitter.com' },
-  { icon: Linkedin, href: 'https://linkedin.com' },
-];
+// const socialLinks = [
+//   { icon: Facebook, href: 'https://facebook.com' },
+//   { icon: Twitter, href: 'https://twitter.com' },
+//   { icon: Linkedin, href: 'https://linkedin.com' },
+// ];
 
 export const Footer = () => {
   return (
@@ -96,7 +90,7 @@ export const Footer = () => {
           <div className="container">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p className="font-medium">
-                © {new Date().getFullYear()} Siinc -{' '}
+                © {new Date().getFullYear()} SIINC Pty Ltd -{' '}
                 <Link
                   href="https://siinc.io"
                   className="underline transition-opacity hover:opacity-80"
@@ -106,7 +100,7 @@ export const Footer = () => {
                 </Link>
               </p>
               <div className="flex items-center gap-6">
-                {socialLinks.map((link) => (
+                {/* {socialLinks.map((link) => (
                   <Link
                     aria-label={link.href}
                     key={link.href}
@@ -115,7 +109,7 @@ export const Footer = () => {
                   >
                     <link.icon size={20} />
                   </Link>
-                ))}
+                ))} */}
               </div>
             </div>
           </div>
