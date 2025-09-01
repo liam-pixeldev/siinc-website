@@ -1,9 +1,3 @@
-# Streamline NextJS Template
-
-Streamline NextJS Template is a premium template built by https://www.shadcnblocks.com
-
-- [Demo](https://streamline-nextjs-template.vercel.app/)
-- [Documentation](https://docs.shadcnblocks.com/templates/getting-started)
 
 ## Screenshot
 
