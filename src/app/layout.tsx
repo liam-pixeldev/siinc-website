@@ -117,7 +117,9 @@ export const metadata: Metadata = {
   verification: {
     google: 'google-site-verification-code',
     yandex: 'yandex-verification-code',
-    bing: 'msvalidate.01-code',
+    other: {
+      'msvalidate.01': 'bing-verification-code',
+    },
   },
 };
 
