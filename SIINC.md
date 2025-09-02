@@ -63,7 +63,7 @@ With Siinc, businesses gain the confidence to meet client expectations, comply w
 ## Get Siinc
 
 Take back control of your data.  
-Try our instant quote calculator at [siinc.io/calculator](https://siinc.io/calculator) or email us at [get@siinc.io](mailto:get@siinc.io) to start protecting your data.
+Try our instant quote calculator at [siinc.io/calculator](https://siinc.io/calculator) or email us at [support@siinc.io](mailto:support@siinc.io) to start protecting your data.
 
 ---
 
