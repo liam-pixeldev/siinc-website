@@ -93,14 +93,14 @@ export const Footer = () => {
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-4">
                 <p className="font-medium">
-                © {new Date().getFullYear()} SIINC Pty Ltd -{' '}
-                <Link
-                  href="https://siinc.io"
-                  className="underline transition-opacity hover:opacity-80"
-                  target="_blank"
-                >
-                  siinc.io
-                </Link>
+                  © {new Date().getFullYear()} SIINC Pty Ltd -{' '}
+                  <Link
+                    href="https://siinc.io"
+                    className="underline transition-opacity hover:opacity-80"
+                    target="_blank"
+                  >
+                    siinc.io
+                  </Link>
                 </p>
                 <Link
                   href="mailto:get@siinc.io"

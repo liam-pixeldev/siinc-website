@@ -170,7 +170,7 @@ export default function Contact() {
               <h2 className="text-lg font-semibold">Email us</h2>
               <Link
                 href="mailto:get@siinc.io"
-                className="text-muted-foreground mt-3 inline-flex items-center gap-2 text-lg font-medium tracking-tight hover:text-primary transition-colors"
+                className="text-muted-foreground hover:text-primary mt-3 inline-flex items-center gap-2 text-lg font-medium tracking-tight transition-colors"
               >
                 <Mail className="size-5" />
                 get@siinc.io
