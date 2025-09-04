@@ -137,7 +137,7 @@ This email was sent from the contact form at siinc.io
     // Send email via Postmark
     await client.sendEmail({
       From: 'website@siinc.io', // You'll need to verify this sender in Postmark
-      To: 'Info@nexsysit.com.au',
+      To: 'get@siinc.io',
       Subject: `Contact Form: ${sanitizedData.fullName} - ${sanitizedData.company}`,
       HtmlBody: htmlBody,
       TextBody: textBody,

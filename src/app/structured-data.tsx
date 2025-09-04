@@ -17,7 +17,7 @@ export const organizationSchema = {
     },
     {
       '@type': 'ContactPoint',
-      email: 'support@siinc.io',
+      email: 'get@siinc.io',
       contactType: 'customer support',
       areaServed: 'Worldwide',
       availableLanguage: ['en'],

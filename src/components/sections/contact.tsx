@@ -169,10 +169,10 @@ export default function Contact() {
             {/* <div>
               <h2 className="text-lg font-semibold">Email us</h2>
               <Link
-                href="mailto:support@siinc.io"
+                href="mailto:get@siinc.io"
                 className="text-muted-foreground mt-3 text-lg font-medium tracking-tight"
               >
-                support@siinc.io
+                get@siinc.io
               </Link>
             </div> */}
           </div>
@@ -205,10 +205,10 @@ export default function Contact() {
                 <p className="text-muted-foreground mb-6">
                   You can also reach us directly at{' '}
                   <Link
-                    href="mailto:support@siinc.io"
+                    href="mailto:get@siinc.io"
                     className="text-primary underline"
                   >
-                    support@siinc.io
+                    get@siinc.io
                   </Link>
                 </p>
                 <div className="flex gap-3">
@@ -216,7 +216,7 @@ export default function Contact() {
                     Try again
                   </Button>
                   <Button asChild size="lg">
-                    <Link href="mailto:support@siinc.io">Email directly</Link>
+                    <Link href="mailto:get@siinc.io">Email directly</Link>
                   </Button>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 # Production Deployment Checklist for Siinc Website
 
 ## ✅ SEO & Metadata
+
 - [x] Meta titles and descriptions for all pages
 - [x] Open Graph tags configured
 - [x] Twitter Card tags configured
@@ -12,6 +13,7 @@
 - [ ] Bing Site Verification code added (update in layout.tsx)
 
 ## ✅ Performance & Assets
+
 - [x] Static export configured (`output: 'export'`)
 - [ ] Favicon files created and placed in /public:
   - [ ] favicon.ico
@@ -24,13 +26,15 @@
 - [x] Site manifest (PWA) configured
 
 ## ✅ Security
-- [x] Security headers configured (_headers file for Netlify/Vercel)
+
+- [x] Security headers configured (\_headers file for Netlify/Vercel)
 - [x] Content Security Policy defined
 - [x] HTTPS enforced (HSTS header)
 - [x] X-Frame-Options set to DENY
 - [x] Environment variables properly configured (.env.example provided)
 
 ## ✅ Functionality
+
 - [x] Contact form configured with proper email settings
 - [x] All internal links working correctly
 - [x] External links opening in app.siinc.io
@@ -39,12 +43,14 @@
 - [ ] Terms of Service updated and complete
 
 ## ✅ Analytics & Monitoring
+
 - [x] Google Analytics 4 configured (G-MGZZ2FMSBX)
 - [ ] Google Tag Manager configured (optional)
 - [ ] Error tracking configured (e.g., Sentry)
 - [ ] Uptime monitoring configured
 
 ## ✅ Deployment Configuration
+
 - [x] vercel.json configured with redirects and headers
 - [x] Build command: `pnpm build`
 - [x] Output directory: `out`
@@ -53,6 +59,7 @@
 - [ ] CDN configured (Cloudflare/Vercel)
 
 ## ✅ Testing
+
 - [ ] All pages load correctly
 - [ ] Mobile responsive design verified
 - [ ] Cross-browser testing completed
@@ -62,6 +69,7 @@
 - [ ] Accessibility audit passed
 
 ## ✅ Legal & Compliance
+
 - [x] Privacy Policy compliant with GDPR/CCPA
 - [ ] Cookie consent banner (if using analytics)
 - [x] Terms of Service link in footer
@@ -78,6 +86,7 @@ NEXT_PUBLIC_APP_URL=https://app.siinc.io
 ```
 
 ## ✅ Pre-Launch Tasks
+
 1. [ ] Create all favicon files
 2. [ ] Create og-image.png (1200x630)
 3. [ ] Set up Postmark account and verify sender email (website@siinc.io)
@@ -88,6 +97,7 @@ NEXT_PUBLIC_APP_URL=https://app.siinc.io
 8. [ ] Review and update Terms of Service
 
 ## ✅ Post-Launch Tasks
+
 1. [ ] Submit sitemap to Google Search Console
 2. [ ] Submit sitemap to Bing Webmaster Tools
 3. [ ] Monitor Core Web Vitals
@@ -124,7 +134,7 @@ vercel --prod
 
 - Production: https://siinc.io
 - App: https://app.siinc.io
-- Support Email: support@siinc.io
+- Support Email: get@siinc.io
 - Privacy Email: privacy@siinc.io
-- Contact Form Sends To: Info@nexsysit.com.au
+- Contact Form Sends To: get@siinc.io
 - Contact Form Sends From: website@siinc.io
