@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import Link from 'next/link';
 
-import { CheckCircle2, XCircle } from 'lucide-react';
+import { CheckCircle2, Mail, XCircle } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -166,15 +166,16 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* <div>
+            <div>
               <h2 className="text-lg font-semibold">Email us</h2>
               <Link
                 href="mailto:get@siinc.io"
-                className="text-muted-foreground mt-3 text-lg font-medium tracking-tight"
+                className="text-muted-foreground mt-3 inline-flex items-center gap-2 text-lg font-medium tracking-tight hover:text-primary transition-colors"
               >
+                <Mail className="size-5" />
                 get@siinc.io
               </Link>
-            </div> */}
+            </div>
           </div>
 
           {/* Inquiry Form / Success / Error Message */}

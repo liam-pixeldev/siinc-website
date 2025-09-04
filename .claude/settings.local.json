@@ -1,13 +1,21 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git init:*)",
-      "Bash(pnpm run lint:*)",
-      "Bash(pnpm add:*)",
-      "Bash(pnpm build:*)",
-      "Bash(pnpm lint:*)"
-    ],
-    "deny": [],
-    "ask": []
+      "Bash",
+      "Read",
+      "Edit",
+      "Write",
+      "WebFetch",
+      "Grep",
+      "Glob",
+      "LS",
+      "MultiEdit",
+      "NotebookRead",
+      "NotebookEdit",
+      "TodoRead",
+      "TodoWrite",
+      "WebSearch",
+      "Read(/C:\\Users\\OWNER\\Desktop\\Projects\\siinc-web\\src\\components\\layout/**)"
+    ]
   }
 }

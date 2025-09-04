@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import { Mail } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 
 const navigation = [
@@ -88,8 +90,9 @@ export const Footer = () => {
         {/* Bottom Section */}
         <div className="bg-primary py-8">
           <div className="container">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <p className="font-medium">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-4">
+                <p className="font-medium">
                 © {new Date().getFullYear()} SIINC Pty Ltd -{' '}
                 <Link
                   href="https://siinc.io"
@@ -98,7 +101,15 @@ export const Footer = () => {
                 >
                   siinc.io
                 </Link>
-              </p>
+                </p>
+                <Link
+                  href="mailto:get@siinc.io"
+                  className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white"
+                >
+                  <Mail className="size-4" />
+                  <span>get@siinc.io</span>
+                </Link>
+              </div>
               <div className="flex items-center gap-6">
                 {/* {socialLinks.map((link) => (
                   <Link
