@@ -144,6 +144,17 @@ const Navbar = () => {
           {/* Auth Buttons - Right */}
           <div className="flex items-center justify-end gap-2.5">
             <Link
+              href="/pricing"
+              className={`transition-opacity duration-300 ${isMenuOpen ? 'max-lg:pointer-events-none max-lg:opacity-0' : 'opacity-100'}`}
+            >
+              <Button
+                variant="default"
+                className="bg-accent hover:bg-accent/90"
+              >
+                Get Started
+              </Button>
+            </Link>
+            <Link
               href="https://app.siinc.io"
               className={`transition-opacity duration-300 ${isMenuOpen ? 'max-lg:pointer-events-none max-lg:opacity-0' : 'opacity-100'}`}
             >
@@ -197,11 +208,20 @@ const Navbar = () => {
       >
         <div className="mt-8 space-y-2">
           <Link
+            href="/pricing"
+            className="block"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <Button size="sm" className="bg-accent hover:bg-accent/90 w-full">
+              Get Started
+            </Button>
+          </Link>
+          <Link
             href="https://app.siinc.io"
             className="block"
             onClick={() => setIsMenuOpen(false)}
           >
-            <Button size="sm" className="w-full">
+            <Button size="sm" variant="outline" className="w-full">
               Login
             </Button>
           </Link>

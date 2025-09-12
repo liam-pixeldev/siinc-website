@@ -26,6 +26,14 @@ const eslintConfig = [
     'plugin:jsx-a11y/recommended',
   ),
   {
+    settings: {
+      // 👇 this is what fixes the resolver issue
+      'import/resolver': {
+        typescript: {
+          project: './tsconfig.json',
+        },
+      },
+    },
     rules: {
       '@next/next/no-html-link-for-pages': 'off',
       'react/jsx-key': 'off',

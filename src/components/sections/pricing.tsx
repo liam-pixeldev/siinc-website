@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 const plans = [
   {
     name: 'Basic',
+    id: 'basic',
     monthlyPrice: '$1.50 / GB / Month',
     annualPrice: '$1.50 / GB / Month',
     monthlyPerUnit: 'Minimum charge: $60',
@@ -24,6 +25,7 @@ const plans = [
   },
   {
     name: 'Standard',
+    id: 'standard',
     monthlyPrice: '$1.35 / GB / Month',
     annualPrice: '$1.35 / GB / Month',
     monthlyPerUnit: 'Minimum: 100GB',
@@ -40,6 +42,7 @@ const plans = [
   },
   {
     name: 'Professional',
+    id: 'professional',
     monthlyPrice: '$1.10 / GB / Month',
     annualPrice: '$1.10 / GB / Month',
     monthlyPerUnit: 'Minimum: 500GB',
@@ -55,6 +58,7 @@ const plans = [
   },
   {
     name: 'Enterprise',
+    id: 'enterprise',
     monthlyPrice: 'Custom',
     annualPrice: 'Custom',
     monthlyPerUnit: 'Volume pricing (5TB+)',
@@ -130,7 +134,7 @@ export default function Pricing({
                       plan.popular ? 'bg-accent hover:bg-accent/90' : ''
                     }
                   >
-                    <Link href="/contact">Get started</Link>
+                    <Link href={`/signup?plan=${plan.id}`}>Get started</Link>
                   </Button>
 
                   <div className="space-y-4">
