@@ -37,11 +37,6 @@
       "permanent": false
     },
     {
-      "source": "/signup",
-      "destination": "https://app.siinc.io/signup",
-      "permanent": false
-    },
-    {
       "source": "/dashboard",
       "destination": "https://app.siinc.io",
       "permanent": false
