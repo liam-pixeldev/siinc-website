@@ -1,13 +1,22 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+
 import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 import {
   Select,
   SelectContent,
@@ -15,9 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
-import type { Metadata } from 'next';
+import { Textarea } from '@/components/ui/textarea';
 
 // Validation schema
 const eventRegistrationSchema = z.object({
@@ -27,10 +34,16 @@ const eventRegistrationSchema = z.object({
   cellPhone: z
     .string()
     .min(1, 'Cell phone is required')
-    .regex(/^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/, 'Please enter a valid phone number'),
+    .regex(
+      /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/,
+      'Please enter a valid phone number',
+    ),
   company: z.string().max(100, 'Company name is too long').optional(),
   jobTitle: z.string().max(100, 'Job title is too long').optional(),
-  dietaryRequirements: z.string().max(500, 'Dietary requirements are too long').optional(),
+  dietaryRequirements: z
+    .string()
+    .max(500, 'Dietary requirements are too long')
+    .optional(),
 });
 
 type EventRegistrationFormData = z.infer<typeof eventRegistrationSchema>;
@@ -67,12 +80,18 @@ export default function EventRegistration() {
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || 'Registration failed. Please try again.');
+        throw new Error(
+          result.error || 'Registration failed. Please try again.',
+        );
       }
 
       setIsSuccess(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.');
+      setError(
+        err instanceof Error
+          ? err.message
+          : 'An unexpected error occurred. Please try again.',
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -93,11 +112,15 @@ export default function EventRegistration() {
                   Registration Confirmed!
                 </h1>
                 <p className="text-muted-foreground mb-6">
-                  Thank you for registering. We look forward to seeing you at the event!
+                  Thank you for registering. We look forward to seeing you at
+                  the event!
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   If you have any questions, please contact us at{' '}
-                  <a href="mailto:events@siinc.io" className="text-primary hover:underline">
+                  <a
+                    href="mailto:events@siinc.io"
+                    className="text-primary hover:underline"
+                  >
                     events@siinc.io
                   </a>
                 </p>
@@ -137,12 +160,19 @@ export default function EventRegistration() {
                     trigger('event');
                   }}
                 >
-                  <SelectTrigger id="event" className={errors.event ? 'border-red-500' : ''}>
+                  <SelectTrigger
+                    id="event"
+                    className={errors.event ? 'border-red-500' : ''}
+                  >
                     <SelectValue placeholder="Select an event" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="New York January 12th">New York January 12th</SelectItem>
-                    <SelectItem value="Los Angeles January 15th">Los Angeles January 15th</SelectItem>
+                    <SelectItem value="New York January 12th">
+                      New York January 12th
+                    </SelectItem>
+                    <SelectItem value="Los Angeles January 15th">
+                      Los Angeles January 15th
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 {errors.event && (
@@ -197,7 +227,9 @@ export default function EventRegistration() {
                   className={errors.cellPhone ? 'border-red-500' : ''}
                 />
                 {errors.cellPhone && (
-                  <p className="text-sm text-red-500">{errors.cellPhone.message}</p>
+                  <p className="text-sm text-red-500">
+                    {errors.cellPhone.message}
+                  </p>
                 )}
               </div>
 
@@ -212,7 +244,9 @@ export default function EventRegistration() {
                   className={errors.company ? 'border-red-500' : ''}
                 />
                 {errors.company && (
-                  <p className="text-sm text-red-500">{errors.company.message}</p>
+                  <p className="text-sm text-red-500">
+                    {errors.company.message}
+                  </p>
                 )}
               </div>
 
@@ -227,7 +261,9 @@ export default function EventRegistration() {
                   className={errors.jobTitle ? 'border-red-500' : ''}
                 />
                 {errors.jobTitle && (
-                  <p className="text-sm text-red-500">{errors.jobTitle.message}</p>
+                  <p className="text-sm text-red-500">
+                    {errors.jobTitle.message}
+                  </p>
                 )}
               </div>
 
@@ -244,24 +280,22 @@ export default function EventRegistration() {
                   className={errors.dietaryRequirements ? 'border-red-500' : ''}
                 />
                 {errors.dietaryRequirements && (
-                  <p className="text-sm text-red-500">{errors.dietaryRequirements.message}</p>
+                  <p className="text-sm text-red-500">
+                    {errors.dietaryRequirements.message}
+                  </p>
                 )}
               </div>
 
               {/* Error Message */}
               {error && (
-                <div className="flex items-start gap-2 rounded-md bg-red-50 p-4 text-red-800 border border-red-200">
-                  <AlertCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
+                <div className="flex items-start gap-2 rounded-md border border-red-200 bg-red-50 p-4 text-red-800">
+                  <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0" />
                   <p className="text-sm">{error}</p>
                 </div>
               )}
 
               {/* Submit Button */}
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={isSubmitting}
-              >
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -272,8 +306,9 @@ export default function EventRegistration() {
                 )}
               </Button>
 
-              <p className="text-xs text-muted-foreground text-center">
-                By registering, you agree to receive event-related communications.
+              <p className="text-muted-foreground text-center text-xs">
+                By registering, you agree to receive event-related
+                communications.
               </p>
             </form>
           </CardContent>

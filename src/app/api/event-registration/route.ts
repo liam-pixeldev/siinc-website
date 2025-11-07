@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+
 import * as postmark from 'postmark';
+import { z } from 'zod';
 
 // Rate limiting (simple in-memory implementation)
-const registrationAttempts = new Map<string, { count: number; resetTime: number }>();
+const registrationAttempts = new Map<
+  string,
+  { count: number; resetTime: number }
+>();
 
 const RATE_LIMIT = 5; // registrations per hour
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
@@ -30,7 +34,10 @@ function checkRateLimit(ip: string): boolean {
   const attempt = registrationAttempts.get(ip);
 
   if (!attempt || now > attempt.resetTime) {
-    registrationAttempts.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    registrationAttempts.set(ip, {
+      count: 1,
+      resetTime: now + RATE_LIMIT_WINDOW,
+    });
     return true;
   }
 
@@ -45,15 +52,16 @@ function checkRateLimit(ip: string): boolean {
 export async function POST(request: NextRequest) {
   try {
     // Get client IP for rate limiting
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
-               request.headers.get('x-real-ip') ||
-               'unknown';
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0] ||
+      request.headers.get('x-real-ip') ||
+      'unknown';
 
     // Check rate limit
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
         { error: 'Too many registration attempts. Please try again later.' },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
@@ -64,7 +72,7 @@ export async function POST(request: NextRequest) {
     if (!validationResult.success) {
       return NextResponse.json(
         { error: 'Invalid form data', details: validationResult.error.errors },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -78,17 +86,20 @@ export async function POST(request: NextRequest) {
       cellPhone: sanitizeInput(data.cellPhone),
       company: data.company ? sanitizeInput(data.company) : 'Not provided',
       jobTitle: data.jobTitle ? sanitizeInput(data.jobTitle) : 'Not provided',
-      dietaryRequirements: data.dietaryRequirements ? sanitizeInput(data.dietaryRequirements) : 'None',
+      dietaryRequirements: data.dietaryRequirements
+        ? sanitizeInput(data.dietaryRequirements)
+        : 'None',
     };
 
     // Send email via Postmark
     const postmarkToken = process.env.POSTMARK_SERVER_TOKEN;
 
     if (!postmarkToken) {
+      // eslint-disable-next-line no-console
       console.error('POSTMARK_SERVER_TOKEN is not configured');
       return NextResponse.json(
         { error: 'Email service is not configured' },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -236,19 +247,20 @@ Timestamp: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York', 
     return NextResponse.json(
       {
         success: true,
-        message: 'Registration successful'
+        message: 'Registration successful',
       },
-      { status: 200 }
+      { status: 200 },
     );
-
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Event registration error:', error);
 
     return NextResponse.json(
       {
-        error: 'An error occurred while processing your registration. Please try again later.'
+        error:
+          'An error occurred while processing your registration. Please try again later.',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
