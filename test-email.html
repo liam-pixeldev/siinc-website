@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Email</title>
+</head>
+<body>
+    <h1>Test Welcome Email</h1>
+    <button onclick="sendTestEmail()">Send Test Email to liam@pixeldev.com.au</button>
+    <div id="result"></div>
+    
+    <script>
+        async function sendTestEmail() {
+            const result = document.getElementById('result');
+            result.innerHTML = 'Sending...';
+            
+            try {
+                const response = await fetch('/api/test-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: 'liam@pixeldev.com.au',
+                        firstName: 'Liam'
+                    })
+                });
+                
+                const data = await response.json();
+                result.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                result.innerHTML = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
