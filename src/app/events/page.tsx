@@ -66,13 +66,35 @@ export default function EventRegistration() {
 
   // Trigger automatic download on page load
   useEffect(() => {
-    const downloadDatasheet = () => {
-      const link = document.createElement('a');
-      link.href = '/SIINC Datasheet -  ACC.pdf';
-      link.download = 'SIINC Datasheet - ACC.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    const downloadDatasheet = async () => {
+      try {
+        // Fetch the PDF file
+        const response = await fetch('/SIINC Datasheet -  ACC.pdf');
+        const blob = await response.blob();
+
+        // Create a blob URL
+        const blobUrl = window.URL.createObjectURL(blob);
+
+        // Create a temporary link element
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = 'SIINC Datasheet - ACC.pdf';
+        link.style.display = 'none';
+
+        // Append to body, click, and remove
+        document.body.appendChild(link);
+        link.click();
+
+        // Clean up
+        setTimeout(() => {
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(blobUrl);
+        }, 100);
+      } catch (error) {
+        // Silently fail if download doesn't work
+        // eslint-disable-next-line no-console
+        console.error('Download failed:', error);
+      }
     };
 
     // Trigger download after a brief delay to ensure page has loaded
