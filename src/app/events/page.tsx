@@ -53,7 +53,6 @@ export default function EventRegistration() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<string>('');
-  const [isDownloading, setIsDownloading] = useState(false);
 
   const {
     register,
@@ -65,38 +64,10 @@ export default function EventRegistration() {
     resolver: zodResolver(eventRegistrationSchema),
   });
 
-  // Handle manual download
-  const handleDownload = async () => {
-    setIsDownloading(true);
-    try {
-      // Fetch the PDF file
-      const response = await fetch('/SIINC Datasheet -  ACC.pdf');
-      const blob = await response.blob();
-
-      // Create a blob URL
-      const blobUrl = window.URL.createObjectURL(blob);
-
-      // Create a temporary link element
-      const link = document.createElement('a');
-      link.href = blobUrl;
-      link.download = 'SIINC Datasheet - ACC.pdf';
-      link.style.display = 'none';
-
-      // Append to body, click, and remove
-      document.body.appendChild(link);
-      link.click();
-
-      // Clean up
-      setTimeout(() => {
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(blobUrl);
-        setIsDownloading(false);
-      }, 100);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Download failed:', error);
-      setIsDownloading(false);
-    }
+  // Handle opening PDF in new tab
+  const handleDownload = () => {
+    // Open PDF in new tab (works well on Safari)
+    window.open('/SIINC Datasheet -  ACC.pdf', '_blank', 'noopener,noreferrer');
   };
 
   const onSubmit = async (data: EventRegistrationFormData) => {
@@ -175,20 +146,10 @@ export default function EventRegistration() {
               <Button
                 type="button"
                 onClick={handleDownload}
-                disabled={isDownloading}
                 className="bg-accent hover:bg-accent/90 w-full"
               >
-                {isDownloading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Downloading...
-                  </>
-                ) : (
-                  <>
-                    <Download className="mr-2 h-4 w-4" />
-                    Download Siinc Data Sheet
-                  </>
-                )}
+                <Download className="mr-2 h-4 w-4" />
+                Download Siinc Data Sheet
               </Button>
             </CardDescription>
           </CardHeader>
