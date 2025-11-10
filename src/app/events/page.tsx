@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { CheckCircle2, Loader2, AlertCircle, Download } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -53,6 +53,7 @@ export default function EventRegistration() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<string>('');
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const {
     register,
@@ -64,43 +65,39 @@ export default function EventRegistration() {
     resolver: zodResolver(eventRegistrationSchema),
   });
 
-  // Trigger automatic download on page load
-  useEffect(() => {
-    const downloadDatasheet = async () => {
-      try {
-        // Fetch the PDF file
-        const response = await fetch('/SIINC Datasheet -  ACC.pdf');
-        const blob = await response.blob();
+  // Handle manual download
+  const handleDownload = async () => {
+    setIsDownloading(true);
+    try {
+      // Fetch the PDF file
+      const response = await fetch('/SIINC Datasheet -  ACC.pdf');
+      const blob = await response.blob();
 
-        // Create a blob URL
-        const blobUrl = window.URL.createObjectURL(blob);
+      // Create a blob URL
+      const blobUrl = window.URL.createObjectURL(blob);
 
-        // Create a temporary link element
-        const link = document.createElement('a');
-        link.href = blobUrl;
-        link.download = 'SIINC Datasheet - ACC.pdf';
-        link.style.display = 'none';
+      // Create a temporary link element
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = 'SIINC Datasheet - ACC.pdf';
+      link.style.display = 'none';
 
-        // Append to body, click, and remove
-        document.body.appendChild(link);
-        link.click();
+      // Append to body, click, and remove
+      document.body.appendChild(link);
+      link.click();
 
-        // Clean up
-        setTimeout(() => {
-          document.body.removeChild(link);
-          window.URL.revokeObjectURL(blobUrl);
-        }, 100);
-      } catch (error) {
-        // Silently fail if download doesn't work
-        // eslint-disable-next-line no-console
-        console.error('Download failed:', error);
-      }
-    };
-
-    // Trigger download after a brief delay to ensure page has loaded
-    const timer = setTimeout(downloadDatasheet, 500);
-    return () => clearTimeout(timer);
-  }, []);
+      // Clean up
+      setTimeout(() => {
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(blobUrl);
+        setIsDownloading(false);
+      }, 100);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Download failed:', error);
+      setIsDownloading(false);
+    }
+  };
 
   const onSubmit = async (data: EventRegistrationFormData) => {
     setIsSubmitting(true);
@@ -170,14 +167,29 @@ export default function EventRegistration() {
             <CardTitle className="text-3xl font-semibold tracking-tight">
               Event Registration
             </CardTitle>
-            <CardDescription className="space-y-2 pt-2">
-              <p className="text-foreground font-medium">
-                Your Siinc Data Sheet is downloading now.
-              </p>
+            <CardDescription className="space-y-3 pt-2">
               <p>
                 Discover how Siinc is transforming the way design professionals
                 work while you secure your place at the launch event.
               </p>
+              <Button
+                type="button"
+                onClick={handleDownload}
+                disabled={isDownloading}
+                className="bg-accent hover:bg-accent/90 w-full"
+              >
+                {isDownloading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Downloading...
+                  </>
+                ) : (
+                  <>
+                    <Download className="mr-2 h-4 w-4" />
+                    Download Siinc Data Sheet
+                  </>
+                )}
+              </Button>
             </CardDescription>
           </CardHeader>
           <CardContent>
