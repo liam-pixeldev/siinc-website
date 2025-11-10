@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
@@ -64,6 +64,22 @@ export default function EventRegistration() {
     resolver: zodResolver(eventRegistrationSchema),
   });
 
+  // Trigger automatic download on page load
+  useEffect(() => {
+    const downloadDatasheet = () => {
+      const link = document.createElement('a');
+      link.href = '/SIINC Datasheet -  ACC.pdf';
+      link.download = 'SIINC Datasheet - ACC.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
+    // Trigger download after a brief delay to ensure page has loaded
+    const timer = setTimeout(downloadDatasheet, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   const onSubmit = async (data: EventRegistrationFormData) => {
     setIsSubmitting(true);
     setError(null);
@@ -112,17 +128,8 @@ export default function EventRegistration() {
                   Registration Confirmed!
                 </h1>
                 <p className="text-muted-foreground mb-6">
-                  Thank you for registering. We look forward to seeing you at
-                  the event!
-                </p>
-                <p className="text-muted-foreground text-sm">
-                  If you have any questions, please contact us at{' '}
-                  <a
-                    href="mailto:events@siinc.io"
-                    className="text-primary hover:underline"
-                  >
-                    events@siinc.io
-                  </a>
+                  Thank you for registering. The Siinc events team will be in
+                  touch.
                 </p>
               </div>
             </CardContent>
@@ -141,8 +148,14 @@ export default function EventRegistration() {
             <CardTitle className="text-3xl font-semibold tracking-tight">
               Event Registration
             </CardTitle>
-            <CardDescription>
-              Please fill out the form below to register for our upcoming event.
+            <CardDescription className="space-y-2 pt-2">
+              <p className="text-foreground font-medium">
+                Your Siinc Data Sheet is downloading now.
+              </p>
+              <p>
+                Discover how Siinc is transforming the way design professionals
+                work while you secure your place at the launch event.
+              </p>
             </CardDescription>
           </CardHeader>
           <CardContent>
