@@ -26,11 +26,11 @@ const interTight = Inter_Tight({
 export const metadata: Metadata = {
   metadataBase: new URL('https://siinc.io'),
   title: {
-    default: 'Siinc - Enterprise Backup for Autodesk Construction Cloud',
+    default: 'Siinc - Protecting Data That Builds the World',
     template: '%s | Siinc',
   },
   description:
-    'Enterprise-grade backup and recovery for ACC, BIM 360 & Autodesk Build. Protect construction data with automated backups, instant restore, and compliance-ready reporting.',
+    'Protecting Data That Builds the World. Enterprise-grade backup and recovery for ACC, BIM 360 & Autodesk Build. Automated backups, instant restore, and compliance-ready reporting.',
   keywords: [
     'Autodesk Construction Cloud backup',
     'ACC backup',
@@ -84,24 +84,24 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://siinc.io',
-    title: 'Siinc - Enterprise Backup for Autodesk Construction Cloud',
+    title: 'Siinc - Protecting Data That Builds the World',
     description:
-      'Enterprise-grade backup and recovery for ACC, BIM 360 & Autodesk Build. Protect construction data with automated backups, instant restore, and compliance-ready reporting.',
+      'Protecting Data That Builds the World. Enterprise-grade backup and recovery for ACC, BIM 360 & Autodesk Build. Automated backups, instant restore, and compliance-ready reporting.',
     siteName: 'Siinc',
     images: [
       {
         url: 'https://siinc.io/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Siinc - Enterprise Backup for Autodesk Construction Cloud',
+        alt: 'Siinc - Protecting Data That Builds the World',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Siinc - Enterprise Backup for Autodesk Construction Cloud',
+    title: 'Siinc - Protecting Data That Builds the World',
     description:
-      'Enterprise-grade backup and recovery for ACC, BIM 360 & Autodesk Build. Protect your construction data.',
+      'Protecting Data That Builds the World. Enterprise-grade backup and recovery for ACC, BIM 360 & Autodesk Build.',
     site: '@siinc_io',
     creator: '@siinc_io',
     images: ['https://siinc.io/og-image.png'],
