@@ -78,8 +78,7 @@ const Hero = () => {
             </h1>
 
             <p className="text-sand-700 font-inter-tight mt-3 text-3xl leading-13 font-medium md:text-4xl lg:text-5xl">
-              Purpose-built synchronization layer that gives your business true
-              control over BIM360 & BIM Collaborate data.
+              Protecting Data That Builds the World
             </p>
           </div>
 
