@@ -17,7 +17,7 @@ export default function Testimonials() {
           <div className="flex flex-1 flex-col items-start gap-3 md:max-w-md md:self-end">
             <p className="text-lg font-medium text-gray-700 dark:text-gray-300">
               From ENR Top 100 contractors to specialized BIM consultancies,
-              Siinc protects critical construction data for firms that can't
+              SIINC protects critical construction data for firms that can't
               afford downtime or data loss.
             </p>
             <Button

@@ -26,11 +26,11 @@ const interTight = Inter_Tight({
 export const metadata: Metadata = {
   metadataBase: new URL('https://siinc.io'),
   title: {
-    default: 'Siinc - Protecting Data That Builds the World',
-    template: '%s | Siinc',
+    default: "SIINC - Independent version backups for common data environments (CDE's)",
+    template: '%s | SIINC',
   },
   description:
-    'Protecting Data That Builds the World. Enterprise-grade backup and recovery for ACC, BIM 360 & Autodesk Build. Automated backups, instant restore, and compliance-ready reporting.',
+    "Enterprise-grade backup and recovery for common data environments (CDE's). Automated version backups, instant restore, and compliance-ready reporting for ACC, BIM 360 & Autodesk Build.",
   keywords: [
     'Autodesk Construction Cloud backup',
     'ACC backup',
@@ -45,9 +45,9 @@ export const metadata: Metadata = {
     'construction data resilience',
     'AEC backup solution',
   ],
-  authors: [{ name: 'Siinc', url: 'https://siinc.io' }],
-  creator: 'Siinc Pty Ltd',
-  publisher: 'Siinc Pty Ltd',
+  authors: [{ name: 'SIINC', url: 'https://siinc.io' }],
+  creator: 'SINC LLC',
+  publisher: 'SINC LLC',
   formatDetection: {
     email: false,
     address: false,
@@ -84,24 +84,24 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://siinc.io',
-    title: 'Siinc - Protecting Data That Builds the World',
+    title: "SIINC - Independent version backups for common data environments (CDE's)",
     description:
-      'Protecting Data That Builds the World. Enterprise-grade backup and recovery for ACC, BIM 360 & Autodesk Build. Automated backups, instant restore, and compliance-ready reporting.',
-    siteName: 'Siinc',
+      "Enterprise-grade backup and recovery for common data environments (CDE's). Automated version backups, instant restore, and compliance-ready reporting for ACC, BIM 360 & Autodesk Build.",
+    siteName: 'SIINC',
     images: [
       {
         url: 'https://siinc.io/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Siinc - Protecting Data That Builds the World',
+        alt: "SIINC - Independent version backups for common data environments (CDE's)",
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Siinc - Protecting Data That Builds the World',
+    title: "SIINC - Independent version backups for common data environments (CDE's)",
     description:
-      'Protecting Data That Builds the World. Enterprise-grade backup and recovery for ACC, BIM 360 & Autodesk Build.',
+      "Enterprise-grade backup and recovery for common data environments (CDE's). Automated version backups, instant restore, and compliance-ready reporting.",
     site: '@siinc_io',
     creator: '@siinc_io',
     images: ['https://siinc.io/og-image.png'],

@@ -24,11 +24,11 @@ export const Feature1 = () => {
       <div className="container">
         <div className="flex flex-col gap-3 md:flex-row">
           <h2 className="flex-1 text-3xl leading-tight font-semibold tracking-tight text-balance md:text-4xl lg:text-5xl">
-            Built for Construction Cloud resilience
+            Built for CDE resilience
           </h2>
           <p className="text-muted-foreground flex-1 text-lg font-medium md:max-w-md md:self-end">
-            Siinc provides enterprise-grade backup and recovery specifically
-            designed for Autodesk Construction Cloud, ensuring your critical
+            SIINC provides enterprise-grade backup and recovery specifically
+            designed for Common Data Environments, ensuring your critical
             project data is always protected and recoverable.
           </p>
         </div>
@@ -57,7 +57,7 @@ export const Feature1 = () => {
         </div>
 
         <div className="text-muted-foreground mt-6 text-end text-sm">
-          *Based on average performance metrics across all Siinc deployments
+          *Based on average performance metrics across all SIINC deployments
         </div>
       </div>
     </section>

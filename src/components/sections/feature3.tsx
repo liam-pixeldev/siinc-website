@@ -17,7 +17,7 @@ const FEATURES = [
       'Continuous incremental protection with customizable schedules.',
     content: {
       title: 'Automated protection that never sleeps',
-      description: `Set it and forget it. Siinc continuously backs up your ACC projects with incremental snapshots, minimizing data loss and ensuring you always have recent recovery points available.`,
+      description: `Set it and forget it. SIINC continuously backs up your CDE projects with incremental snapshots, minimizing data loss and ensuring you always have recent recovery points available.`,
       image: '/images/homepage/features-tabs/1.webp',
       className: 'md:[&_img]:translate-x-20 [&_img]:translate-x-5 ',
     },
@@ -29,7 +29,7 @@ const FEATURES = [
     content: {
       title: 'Surgical precision recovery when you need it',
       description:
-        "Don't restore everything when you only need one file. Siinc provides granular restore capabilities down to individual files, with fast RTOs that minimize disruption to your workflows.",
+        "Don't restore everything when you only need one file. SIINC provides granular restore capabilities down to individual files, with fast RTOs that minimize disruption to your workflows.",
       image: '/images/homepage/features-tabs/2.webp',
     },
     icon: FolderSync,
@@ -40,7 +40,7 @@ const FEATURES = [
     content: {
       title: 'Your data, your cloud, your control',
       description:
-        'Maintain complete data sovereignty with flexible storage options. Whether you prefer public cloud, private cloud, or on-premises storage, Siinc adapts to your infrastructure requirements.',
+        'Maintain complete data sovereignty with flexible storage options. Whether you prefer public cloud, private cloud, or on-premises storage, SIINC adapts to your infrastructure requirements.',
       image: '/images/homepage/features-tabs/3.webp',
     },
     icon: FileArchive,
@@ -70,9 +70,9 @@ export const Feature3 = () => {
             Enterprise-grade backup features
           </h2>
           <p className="text-muted-foreground flex-1 text-lg font-medium md:max-w-md md:self-end">
-            Siinc delivers comprehensive backup capabilities specifically
+            SIINC delivers comprehensive backup capabilities specifically
             designed for the unique requirements of construction projects and
-            ACC workflows.
+            CDE workflows.
           </p>
         </div>
 

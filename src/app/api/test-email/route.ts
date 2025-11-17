@@ -30,12 +30,12 @@ export async function POST(request: NextRequest) {
     const htmlBody = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="text-align: center; padding: 20px;">
-          <h1 style="color: #333;">Welcome to Siinc!</h1>
+          <h1 style="color: #333;">Welcome to SIINC!</h1>
         </div>
         <div style="background: #f5f5f5; padding: 30px; border-radius: 8px;">
           <p style="font-size: 16px; color: #333;">Hi ${firstName},</p>
           <p style="font-size: 16px; color: #666; line-height: 1.5;">
-            Thank you for signing up for Siinc! Your account has been successfully created.
+            Thank you for signing up for SIINC! Your account has been successfully created.
           </p>
           <p style="font-size: 16px; color: #666; line-height: 1.5;">
             You can now log in to your account and start protecting your Autodesk Construction Cloud data.
@@ -51,17 +51,17 @@ export async function POST(request: NextRequest) {
           </p>
         </div>
         <div style="text-align: center; padding: 20px; color: #999; font-size: 12px;">
-          <p>© 2024 Siinc. All rights reserved.</p>
+          <p>© 2024 SIINC. All rights reserved.</p>
         </div>
       </div>
     `;
 
     const textBody = `
-Welcome to Siinc!
+Welcome to SIINC!
 
 Hi ${firstName},
 
-Thank you for signing up for Siinc! Your account has been successfully created.
+Thank you for signing up for SIINC! Your account has been successfully created.
 
 You can now log in to your account and start protecting your Autodesk Construction Cloud data.
 
@@ -70,13 +70,13 @@ Log in at: https://app.siinc.io
 If you have any questions, feel free to reach out to our support team at support@siinc.io.
 
 Best regards,
-The Siinc Team
+The SIINC Team
     `;
 
     const result = await client.sendEmail({
       From: 'website@siinc.io',
       To: email,
-      Subject: 'Welcome to Siinc - Your Account is Ready!',
+      Subject: 'Welcome to SIINC - Your Account is Ready!',
       HtmlBody: htmlBody,
       TextBody: textBody,
       MessageStream: 'outbound',

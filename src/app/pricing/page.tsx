@@ -6,13 +6,13 @@ import { FAQ } from '@/components/sections/faq';
 import Pricing from '@/components/sections/pricing';
 
 export const metadata: Metadata = {
-  title: 'Pricing - Transparent Per-GB Pricing',
+  title: 'Pricing - Flexible Plans for Your Needs',
   description:
-    'Simple, transparent pricing for ACC backup. From $1.10 to $1.50 per GB per month. No hidden fees. 30-day free trial. Enterprise volume discounts available.',
+    'Flexible pricing plans for ACC backup. Contact us for detailed pricing information tailored to your requirements. Multiple plan options available.',
   openGraph: {
-    title: 'Siinc Pricing - ACC Backup from $1.10/GB/Month',
+    title: 'SIINC Pricing - Flexible ACC Backup Plans',
     description:
-      'Simple, transparent pricing for ACC backup. No hidden fees. 30-day free trial. Enterprise volume discounts available.',
+      'Flexible pricing plans for ACC backup. Contact us for detailed pricing information tailored to your requirements.',
   },
 };
 

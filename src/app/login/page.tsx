@@ -17,7 +17,7 @@ const Login = () => {
             <CardHeader className="flex flex-col items-center space-y-0">
               <Image
                 src="/images/logos/logo.png"
-                alt="Siinc logo"
+                alt="SIINC logo"
                 width={120}
                 height={40}
                 className="mb-7 object-contain"

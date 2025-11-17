@@ -135,21 +135,21 @@
 
 @layer base {
   :root {
-    --background: 145 20% 97%; /* #F4F8F6 - Siinc light background */
+    --background: 145 20% 97%; /* #F4F8F6 - SIINC light background */
     --foreground: 160 15% 15%; /* #202825 - Dark green-tinted text */
     --card: 0 0% 100%; /* #FFFFFF */
     --card-foreground: 160 15% 15%; /* #202825 */
     --popover: 0 0% 100%; /* #FFFFFF */
     --popover-foreground: 160 15% 15%; /* #202825 */
-    --primary: 156 19% 62%; /* #92BEAD - Siinc soft green */
+    --primary: 156 19% 62%; /* #92BEAD - SIINC soft green */
     --primary-foreground: 0 0% 100%; /* #FFFFFF */
     --secondary: 145 20% 94%; /* #EBF2EF - Light green tint */
     --secondary-foreground: 160 15% 20%; /* #2A3330 */
     --muted: 145 15% 92%; /* #E8F0EC */
     --muted-foreground: 160 10% 45%; /* #657570 */
-    --accent: 350 83% 58%; /* #ED3D56 - Siinc strong pink/red */
+    --accent: 350 83% 58%; /* #ED3D56 - SIINC strong pink/red */
     --accent-foreground: 0 0% 100%; /* #FFFFFF */
-    --destructive: 0 100% 37%; /* #BE0000 - Siinc dark red */
+    --destructive: 0 100% 37%; /* #BE0000 - SIINC dark red */
     --destructive-foreground: 0 0% 100%; /* #FFFFFF */
     --border: 156 15% 85%; /* #D1E0DA - Soft green border */
     --input: 156 15% 90%; /* #E0EBE6 */
@@ -175,15 +175,15 @@
     --card-foreground: 145 20% 95%; /* #F0F5F2 */
     --popover: 160 18% 12%; /* #161F1B */
     --popover-foreground: 145 20% 95%; /* #F0F5F2 */
-    --primary: 156 19% 62%; /* #92BEAD - Siinc soft green */
+    --primary: 156 19% 62%; /* #92BEAD - SIINC soft green */
     --primary-foreground: 160 20% 8%; /* #0F1613 */
     --secondary: 160 15% 18%; /* #253029 */
     --secondary-foreground: 145 20% 90%; /* #E6F0EA */
     --muted: 160 12% 22%; /* #2F3834 */
     --muted-foreground: 156 10% 65%; /* #9BAFA6 */
-    --accent: 350 83% 58%; /* #ED3D56 - Siinc strong pink/red */
+    --accent: 350 83% 58%; /* #ED3D56 - SIINC strong pink/red */
     --accent-foreground: 0 0% 100%; /* #FFFFFF */
-    --destructive: 0 100% 37%; /* #BE0000 - Siinc dark red */
+    --destructive: 0 100% 37%; /* #BE0000 - SIINC dark red */
     --destructive-foreground: 0 0% 100%; /* #FFFFFF */
     --border: 160 12% 25%; /* #364039 */
     --input: 160 12% 20%; /* #2A332E */

@@ -1,12 +1,12 @@
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Siinc Pty Ltd',
-  alternateName: 'Siinc',
+  name: 'SINC LLC',
+  alternateName: 'SIINC',
   url: 'https://siinc.io',
   logo: 'https://siinc.io/logo.png',
   description:
-    'Enterprise-grade backup and recovery solution for Autodesk Construction Cloud, BIM 360, and Autodesk Build.',
+    'Enterprise-grade backup and recovery solution for Common Data Environments including Autodesk Construction Cloud, BIM 360, and Autodesk Build.',
   contactPoint: [
     {
       '@type': 'ContactPoint',
@@ -40,28 +40,16 @@ export const organizationSchema = {
 export const softwareApplicationSchema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'Siinc',
+  name: 'SIINC',
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
-  offers: {
-    '@type': 'Offer',
-    price: '1.50',
-    priceCurrency: 'USD',
-    priceSpecification: {
-      '@type': 'UnitPriceSpecification',
-      price: '1.50',
-      priceCurrency: 'USD',
-      unitText: 'GB per month',
-      billingDuration: 'P1M',
-    },
-  },
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '4.8',
     reviewCount: '150',
   },
   featureList: [
-    'Automated backups for ACC',
+    'Automated backups for CDEs',
     'Granular restore capabilities',
     'Compliance reporting',
     'Enterprise-grade security',
@@ -80,26 +68,26 @@ export const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'How does Siinc backup Autodesk Construction Cloud data?',
+      name: 'How does SIINC backup Common Data Environment data?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Siinc uses OAuth 2.0 to securely connect to your ACC account and performs automated incremental backups of your projects, storing them encrypted in your chosen storage location.',
+        text: 'SIINC uses OAuth 2.0 to securely connect to your CDE and performs automated incremental backups of your projects, storing them encrypted in your chosen storage location.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Is Siinc compliant with data protection regulations?',
+      name: 'Is SIINC compliant with data protection regulations?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, Siinc is compliant with GDPR, CCPA, Australian Privacy Act, and other major data protection regulations. We provide compliance reports and audit logs.',
+        text: 'Yes, SIINC is compliant with GDPR, CCPA, Australian Privacy Act, and other major data protection regulations. We provide compliance reports and audit logs.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What is the pricing for Siinc?',
+      name: 'What is the pricing for SIINC?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Siinc offers transparent per-GB pricing from $1.10 to $1.50 per GB per month, with volume discounts available for enterprise customers.',
+        text: 'SIINC offers flexible pricing plans tailored to your specific needs. Contact us for detailed pricing information based on your storage requirements and desired features.',
       },
     },
   ],

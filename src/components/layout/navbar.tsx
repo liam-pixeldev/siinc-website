@@ -47,7 +47,7 @@ const Navbar = () => {
           title: 'Resilience & Protection',
           href: '/#resilience-protection',
           description:
-            'Built for Construction Cloud resilience with enterprise-grade features',
+            'Built for CDE resilience with enterprise-grade features',
         },
         {
           title: 'Complete Control',
@@ -58,7 +58,7 @@ const Navbar = () => {
         {
           title: 'Enterprise Features',
           href: '/#enterprise-features',
-          description: 'Enterprise-grade backup features for ACC workflows',
+          description: 'Enterprise-grade backup features for CDE workflows',
         },
       ],
     },
@@ -81,10 +81,10 @@ const Navbar = () => {
             <Link href="/" className="flex items-center gap-2">
               <Image
                 src="/images/logos/logo.png"
-                alt="Siinc logo"
+                alt="SIINC logo"
                 width={120}
                 height={40}
-                className="object-contain"
+                className="object-contain w-20 lg:w-[120px]"
               />
             </Link>
           </div>
@@ -142,7 +142,7 @@ const Navbar = () => {
           </div>
 
           {/* Auth Buttons - Right */}
-          <div className="flex items-center justify-end gap-2.5">
+          <div className="flex items-center justify-end gap-2.5 lg:gap-2.5 gap-4">
             <Link
               href="/pricing"
               className={`transition-opacity duration-300 ${isMenuOpen ? 'max-lg:pointer-events-none max-lg:opacity-0' : 'opacity-100'}`}
@@ -156,7 +156,7 @@ const Navbar = () => {
             </Link>
             <Link
               href="https://app.siinc.io"
-              className={`transition-opacity duration-300 ${isMenuOpen ? 'max-lg:pointer-events-none max-lg:opacity-0' : 'opacity-100'}`}
+              className={`hidden transition-opacity duration-300 lg:block ${isMenuOpen ? 'max-lg:pointer-events-none max-lg:opacity-0' : 'opacity-100'}`}
             >
               <Button
                 variant="outline"
@@ -166,7 +166,7 @@ const Navbar = () => {
               </Button>
             </Link>
             <div
-              className={`transition-opacity duration-300 ${isMenuOpen ? 'max-lg:pointer-events-none max-lg:opacity-0' : 'opacity-100'}`}
+              className={`hidden transition-opacity duration-300 lg:block ${isMenuOpen ? 'max-lg:pointer-events-none max-lg:opacity-0' : 'opacity-100'}`}
             >
               <ThemeToggle />
             </div>

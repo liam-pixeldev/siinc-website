@@ -25,7 +25,7 @@ import { cn } from '@/lib/utils';
 const features = [
   {
     title: 'Scheduled backups',
-    description: 'Continuous incremental protection for your ACC data.',
+    description: 'Continuous incremental protection for your CDE data.',
     icon: Clock,
   },
   {
@@ -40,7 +40,7 @@ const features = [
   },
   {
     title: 'Native integration',
-    description: 'Direct ACC integration with OAuth - no agents required.',
+    description: 'Direct CDE integration with OAuth - no agents required.',
     icon: CheckCircle2,
   },
 ];
@@ -74,7 +74,7 @@ const Hero = () => {
         <div className="space-y-8 lg:space-y-12">
           <div>
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
-              Independent, versioned backups for Autodesk Construction Cloud
+              Independent version backups for common data environments (CDE's)
             </h1>
 
             <p className="text-sand-700 font-inter-tight mt-3 text-3xl leading-13 font-medium md:text-4xl lg:text-5xl">
@@ -152,7 +152,7 @@ const Hero = () => {
                   <div className="relative size-full min-h-[30rem] overflow-hidden rounded-t-xl">
                     <Image
                       src={slide.image}
-                      alt={`Siinc backup interface showing ${slide.label}`}
+                      alt={`SIINC backup interface showing ${slide.label}`}
                       fill
                       className="object-cover object-left-top"
                       priority={index === 0}

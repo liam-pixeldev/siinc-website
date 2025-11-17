@@ -113,7 +113,7 @@ export default function Contact() {
           Contact us
         </h1>
         <p className="text-muted-foreground mt-4 text-center">
-          Get in touch with our team to learn how Siinc can protect your ACC
+          Get in touch with our team to learn how SIINC can protect your ACC
           data.
         </p>
 

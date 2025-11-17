@@ -39,6 +39,11 @@ const ITEMS = [
     src: '/images/logos/authorized-dev.png',
     href: 'https://www.autodesk.com/developer-network',
   },
+  {
+    name: 'Bentley Developer Network',
+    src: '/images/logos/bentley.png',
+    href: 'https://www.bentley.com/',
+  },
 ];
 
 export default function Logos() {

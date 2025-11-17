@@ -29,21 +29,21 @@ const faqItems: FAQItem[] = [
   // Getting Started Questions
   {
     category: 'Getting Started',
-    question: 'How long does it take to set up Siinc?',
+    question: 'How long does it take to set up SIINC?',
     answer:
-      "Setup takes less than 30 minutes. Simply authorize Siinc through OAuth with your Autodesk Construction Cloud account, select the projects you want to backup, choose your storage destination, and you're protected. No agents or complex configurations required.",
+      "Setup takes less than 30 minutes. Simply authorize SIINC through OAuth with your Autodesk Construction Cloud account, select the projects you want to backup, choose your storage destination, and you're protected. No agents or complex configurations required.",
   },
   {
     category: 'Getting Started',
     question: 'Do I need to install any software?',
     answer:
-      'No installation required. Siinc is a cloud-based solution that connects directly to your ACC environment through secure OAuth authentication. Everything runs in the cloud with no agents needed on your local machines.',
+      'No installation required. SIINC is a cloud-based solution that connects directly to your ACC environment through secure OAuth authentication. Everything runs in the cloud with no agents needed on your local machines.',
   },
   {
     category: 'Getting Started',
-    question: 'Which Autodesk products does Siinc support?',
+    question: 'Which Autodesk products does SIINC support?',
     answer:
-      'Siinc supports all Autodesk Construction Cloud products including BIM360, BIM Collaborate, BIM Collaborate Pro, Build, and Docs. We provide full backup capabilities for all file types, metadata, permissions, and version history.',
+      'SIINC supports all Autodesk Construction Cloud products including BIM360, BIM Collaborate, BIM Collaborate Pro, Build, and Docs. We provide full backup capabilities for all file types, metadata, permissions, and version history.',
   },
   // Backup & Recovery Questions
   {
@@ -62,13 +62,13 @@ const faqItems: FAQItem[] = [
     category: 'Backup & Recovery',
     question: 'What happens during an Autodesk outage?',
     answer:
-      'Your backed-up data remains fully accessible through Siinc during any ACC outage. You can browse, download, and share project files, ensuring business continuity even when Autodesk services are unavailable. This keeps your teams productive during disruptions.',
+      'Your backed-up data remains fully accessible through SIINC during any ACC outage. You can browse, download, and share project files, ensuring business continuity even when Autodesk services are unavailable. This keeps your teams productive during disruptions.',
   },
   {
     category: 'Backup & Recovery',
     question: 'Can I restore to a different ACC account?',
     answer:
-      'Yes, Siinc supports cross-account restoration. This is particularly useful for disaster recovery scenarios, migrating projects between accounts, or when recovering data after contractor access is revoked.',
+      'Yes, SIINC supports cross-account restoration. This is particularly useful for disaster recovery scenarios, migrating projects between accounts, or when recovering data after contractor access is revoked.',
   },
   // Security & Compliance Questions
   {
@@ -79,9 +79,9 @@ const faqItems: FAQItem[] = [
   },
   {
     category: 'Security & Compliance',
-    question: 'Does Siinc help with compliance requirements?',
+    question: 'Does SIINC help with compliance requirements?',
     answer:
-      'Yes, Siinc provides immutable audit logs, automated compliance reports, and full metadata preservation that satisfy ISO standards, cyber insurance requirements, and regulatory audits. Reports can be generated on-demand and are accepted by major insurers and auditors.',
+      'Yes, SIINC provides immutable audit logs, automated compliance reports, and full metadata preservation that satisfy ISO standards, cyber insurance requirements, and regulatory audits. Reports can be generated on-demand and are accepted by major insurers and auditors.',
   },
   {
     category: 'Security & Compliance',
@@ -91,22 +91,22 @@ const faqItems: FAQItem[] = [
   },
   {
     category: 'Security & Compliance',
-    question: 'What certifications does Siinc have?',
+    question: 'What certifications does SIINC have?',
     answer:
-      'Siinc maintains SOC 2 Type II certification, is ISO 27001 compliant, and meets requirements for cyber insurance policies. Our platform is regularly audited and penetration tested by third-party security firms.',
+      'SIINC maintains SOC 2 Type II certification, is ISO 27001 compliant, and meets requirements for cyber insurance policies. Our platform is regularly audited and penetration tested by third-party security firms.',
   },
   // Pricing & Plans Questions
   {
     category: 'Pricing & Plans',
     question: 'How does pricing work?',
     answer:
-      'Siinc offers transparent per-GB pricing for Professional plans, with volume discounts available. Starter plans begin at $299/month for up to 100GB. Enterprise plans offer custom pricing with additional features like dedicated support and SLA guarantees.',
+      'SIINC offers flexible pricing plans tailored to your specific needs. Contact us for detailed pricing information based on your storage requirements and desired features. We offer Basic, Standard, Professional, and Enterprise plans with various levels of service and support.',
   },
   {
     category: 'Pricing & Plans',
     question: 'Is there a free trial?',
     answer:
-      'Yes, we offer a 30-day free trial with full functionality. No credit card required to start. This gives you time to test Siinc with your actual projects and workflows before committing to a paid plan.',
+      'Yes, we offer a 30-day free trial with full functionality. No credit card required to start. This gives you time to test SIINC with your actual projects and workflows before committing to a paid plan.',
   },
   {
     category: 'Pricing & Plans',
@@ -119,7 +119,7 @@ const faqItems: FAQItem[] = [
     category: 'Technical',
     question: 'What are the system requirements?',
     answer:
-      'Siinc is entirely cloud-based, so there are no specific system requirements. You just need a modern web browser and an active Autodesk Construction Cloud account. The platform works with Chrome, Firefox, Safari, and Edge.',
+      'SIINC is entirely cloud-based, so there are no specific system requirements. You just need a modern web browser and an active Autodesk Construction Cloud account. The platform works with Chrome, Firefox, Safari, and Edge.',
   },
   {
     category: 'Technical',
@@ -129,9 +129,9 @@ const faqItems: FAQItem[] = [
   },
   {
     category: 'Technical',
-    question: 'Does Siinc affect ACC performance?',
+    question: 'Does SIINC affect ACC performance?',
     answer:
-      "No, Siinc operates independently and doesn't impact your ACC performance. Backups run in the background using ACC's APIs without affecting your team's daily workflows or file access speeds.",
+      "No, SIINC operates independently and doesn't impact your ACC performance. Backups run in the background using ACC's APIs without affecting your team's daily workflows or file access speeds.",
   },
 ];
 
@@ -258,7 +258,7 @@ export const FAQPage = () => {
           </h1>
           <p className="text-muted-foreground mx-auto mt-4 max-w-xl text-center text-balance">
             Everything you need to know about protecting your Autodesk
-            Construction Cloud data with Siinc.
+            Construction Cloud data with SIINC.
           </p>
         </div>
 

@@ -203,7 +203,7 @@ export async function POST(request: NextRequest) {
             </div>
           </div>
           <div class="footer">
-            <p>This registration was submitted from the Siinc website event registration form.</p>
+            <p>This registration was submitted from the SIINC website event registration form.</p>
             <p>IP Address: ${ip}</p>
             <p>Timestamp: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York', timeZoneName: 'short' })}</p>
           </div>
@@ -229,7 +229,7 @@ Special Requirements:
 - Dietary Requirements: ${sanitizedData.dietaryRequirements}
 
 ---
-Submitted from: Siinc Website Event Registration
+Submitted from: SIINC Website Event Registration
 IP Address: ${ip}
 Timestamp: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York', timeZoneName: 'short' })}
     `.trim();

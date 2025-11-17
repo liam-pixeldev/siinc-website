@@ -7,9 +7,9 @@ import {
 
 const leftQuestions = [
   {
-    question: 'What is Siinc and how does it work with ACC?',
+    question: 'What is SIINC and how does it work with CDEs?',
     answer:
-      'Siinc is a purpose-built backup and recovery solution for Autodesk Construction Cloud. It connects directly via OAuth, continuously backs up your BIM360 and BIM Collaborate projects, and stores them in your preferred cloud or on-premises location.',
+      'SIINC is a purpose-built backup and recovery solution for Common Data Environments. It connects directly via OAuth, continuously backs up your projects, and stores them in your preferred cloud or on-premises location.',
   },
   {
     question: 'How quickly can I restore lost data?',
@@ -19,17 +19,17 @@ const leftQuestions = [
   {
     question: 'What storage options are available?',
     answer:
-      'Siinc supports Azure, AWS, any S3-compatible storage, and on-premises solutions. You maintain complete control over where your data is stored, ensuring compliance with your data sovereignty requirements.',
+      'SIINC supports Azure, AWS, any S3-compatible storage, and on-premises solutions. You maintain complete control over where your data is stored, ensuring compliance with your data sovereignty requirements.',
   },
   {
-    question: 'How does Siinc help with compliance?',
+    question: 'How does SIINC help with compliance?',
     answer:
-      'Siinc provides immutable audit logs, automated compliance reports, and full metadata preservation that satisfy ISO standards, cyber insurance requirements, and regulatory audits. Reports are generated on-demand.',
+      'SIINC provides immutable audit logs, automated compliance reports, and full metadata preservation that satisfy ISO standards, cyber insurance requirements, and regulatory audits. Reports are generated on-demand.',
   },
   {
-    question: 'What happens during an Autodesk outage?',
+    question: 'What happens during a CDE outage?',
     answer:
-      'Your backed-up data remains fully accessible through Siinc. You can browse, download, and share project files ensuring business continuity even when ACC is unavailable.',
+      'Your backed-up data remains fully accessible through SIINC. You can browse, download, and share project files ensuring business continuity even when your CDE is unavailable.',
   },
 ];
 
@@ -37,22 +37,22 @@ const rightQuestions = [
   {
     question: 'How long does setup take?',
     answer:
-      "Setup takes less than 30 minutes. Simply authorize Siinc through OAuth, select your projects to backup, choose your storage destination, and you're protected. No agents or complex configurations required.",
+      "Setup takes less than 30 minutes. Simply authorize SIINC through OAuth, select your projects to backup, choose your storage destination, and you're protected. No agents or complex configurations required.",
   },
   {
     question: 'Is my data encrypted and secure?',
     answer:
-      'Yes, all data is encrypted both in transit and at rest using industry-standard AES-256 encryption. Access is controlled through your existing ACC permissions, and all activities are logged for audit purposes.',
+      'Yes, all data is encrypted both in transit and at rest using industry-standard AES-256 encryption. Access is controlled through your existing CDE permissions, and all activities are logged for audit purposes.',
   },
   {
     question: 'What if my contractor goes bankrupt?',
     answer:
-      'Siinc ensures you retain complete copies of all project data independent of contractor access. If a contractor loses ACC access or goes bankrupt, your backed-up data remains fully accessible to you.',
+      'SIINC ensures you retain complete copies of all project data independent of contractor access. If a contractor loses CDE access or goes bankrupt, your backed-up data remains fully accessible to you.',
   },
   {
-    question: 'Can I try Siinc before committing?',
+    question: 'Can I try SIINC before committing?',
     answer:
-      'Yes, we offer a 30-day free trial with full functionality. No credit card required. You can also use our instant quote calculator at siinc.io/calculator to understand pricing for your specific needs.',
+      'Yes, we offer a 30-day free trial with full functionality. No credit card required. Contact us to get started with your trial.',
   },
 ];
 

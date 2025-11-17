@@ -12,10 +12,6 @@ const plans = [
   {
     name: 'Basic',
     id: 'basic',
-    monthlyPrice: '$1.50 / GB / Month',
-    annualPrice: '$1.50 / GB / Month',
-    monthlyPerUnit: 'Minimum charge: $60',
-    annualPerUnit: 'Minimum charge: $60',
     features: [
       'Daily incremental backups',
       'File-level restore',
@@ -26,10 +22,6 @@ const plans = [
   {
     name: 'Standard',
     id: 'standard',
-    monthlyPrice: '$1.35 / GB / Month',
-    annualPrice: '$1.35 / GB / Month',
-    monthlyPerUnit: 'Minimum: 100GB',
-    annualPerUnit: 'Minimum: 100GB',
     features: [
       'Hourly incremental backups',
       'Granular restore (file/folder/project)',
@@ -43,10 +35,6 @@ const plans = [
   {
     name: 'Professional',
     id: 'professional',
-    monthlyPrice: '$1.10 / GB / Month',
-    annualPrice: '$1.10 / GB / Month',
-    monthlyPerUnit: 'Minimum: 500GB',
-    annualPerUnit: 'Minimum: 500GB',
     features: [
       'Hourly incremental backups',
       'Granular restore (file/folder/project)',
@@ -59,10 +47,6 @@ const plans = [
   {
     name: 'Enterprise',
     id: 'enterprise',
-    monthlyPrice: 'Custom',
-    annualPrice: 'Custom',
-    monthlyPerUnit: 'Volume pricing (5TB+)',
-    annualPerUnit: 'Volume pricing (5TB+)',
     features: [
       'All Professional features',
       'Custom backup schedules',
@@ -86,17 +70,15 @@ export default function Pricing({
         <div className="mx-auto max-w-3xl space-y-4 text-center">
           {headerTag === 'h1' ? (
             <h1 className="text-center text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
-              Simple, transparent pricing
+              Flexible pricing plans
             </h1>
           ) : (
             <h2 className="text-center text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
-              Simple, transparent pricing
+              Flexible pricing plans
             </h2>
           )}
           <p className="text-muted-foreground text-lg text-balance">
-            Start with a 30-day free trial. No credit card required. Scale up or
-            down based on your storage needs with transparent per-GB pricing.
-            All prices in USD.
+            Choose the plan that best fits your needs. Contact us for detailed pricing information tailored to your requirements.
           </p>
         </div>
 
@@ -118,12 +100,6 @@ export default function Pricing({
               >
                 <CardHeader>
                   <h3 className="text-2xl font-semibold">{plan.name}</h3>
-                  <div className="mt-2">
-                    <p className="text-muted-foreground text-lg font-medium">
-                      {plan.monthlyPrice}
-                      {plan.monthlyPerUnit && ' ' + plan.monthlyPerUnit}
-                    </p>
-                  </div>
                 </CardHeader>
                 <CardContent className="flex flex-col space-y-6">
                   <Button

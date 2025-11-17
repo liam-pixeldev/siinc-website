@@ -101,7 +101,7 @@ const Signup = () => {
             <CardHeader className="flex flex-col items-center space-y-0">
               <Image
                 src="/images/logos/logo.png"
-                alt="Siinc logo"
+                alt="SIINC logo"
                 width={120}
                 height={40}
                 className="mb-7 object-contain"
@@ -114,7 +114,7 @@ const Signup = () => {
                     <CheckCircle2 className="h-16 w-16 text-green-500" />
                   </div>
                   <h2 className="mb-2 text-2xl font-semibold">
-                    Welcome to Siinc!
+                    Welcome to SIINC!
                   </h2>
                   <p className="text-muted-foreground mb-6">
                     Your account has been created successfully. You can now log
@@ -212,16 +212,16 @@ const Signup = () => {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="basic">
-                          Basic - $1.50/GB/Month
+                          Basic
                         </SelectItem>
                         <SelectItem value="standard">
-                          Standard - $1.35/GB/Month
+                          Standard
                         </SelectItem>
                         <SelectItem value="professional">
-                          Professional - $1.10/GB/Month
+                          Professional
                         </SelectItem>
                         <SelectItem value="enterprise">
-                          Enterprise - Custom Pricing
+                          Enterprise
                         </SelectItem>
                       </SelectContent>
                     </Select>

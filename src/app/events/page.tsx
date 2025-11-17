@@ -118,7 +118,7 @@ export default function EventRegistration() {
                   Registration Confirmed!
                 </h1>
                 <p className="text-muted-foreground mb-6">
-                  Thank you for registering. The Siinc events team will be in
+                  Thank you for registering. The SIINC events team will be in
                   touch.
                 </p>
               </div>
@@ -140,7 +140,7 @@ export default function EventRegistration() {
             </CardTitle>
             <CardDescription className="space-y-3 pt-2">
               <p>
-                Discover how Siinc is transforming the way design professionals
+                Discover how SIINC is transforming the way design professionals
                 work while you secure your place at the launch event.
               </p>
               <Button
@@ -149,7 +149,7 @@ export default function EventRegistration() {
                 className="bg-accent hover:bg-accent/90 w-full"
               >
                 <Download className="mr-2 h-4 w-4" />
-                Download Siinc Data Sheet
+                Download SIINC Data Sheet
               </Button>
             </CardDescription>
           </CardHeader>

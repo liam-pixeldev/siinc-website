@@ -43,7 +43,7 @@ const ITEMS: ItemType[] = [
   {
     title: 'Service Continuity',
     description:
-      'Stay operational during ACC outages with accessible offline backups.',
+      'Stay operational during CDE outages with accessible offline backups.',
     image: {
       src: '/images/homepage/resource-allocation/access-controls.webp',
       alt: 'Recovery interface showing instant restore capabilities',
