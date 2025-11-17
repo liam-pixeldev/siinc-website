@@ -84,7 +84,7 @@ const Navbar = () => {
                 alt="SIINC logo"
                 width={120}
                 height={40}
-                className="object-contain w-20 lg:w-[120px]"
+                className="w-20 object-contain lg:w-[120px]"
               />
             </Link>
           </div>
@@ -142,7 +142,7 @@ const Navbar = () => {
           </div>
 
           {/* Auth Buttons - Right */}
-          <div className="flex items-center justify-end gap-2.5 lg:gap-2.5 gap-4">
+          <div className="flex items-center justify-end gap-4 lg:gap-2.5">
             <Link
               href="/pricing"
               className={`transition-opacity duration-300 ${isMenuOpen ? 'max-lg:pointer-events-none max-lg:opacity-0' : 'opacity-100'}`}

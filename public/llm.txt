@@ -1,0 +1,115 @@
+# SIINC - Independent Version Backups for Common Data Environments
+
+> Enterprise-grade backup and recovery solution for Common Data Environments (CDEs) including Autodesk Construction Cloud, BIM 360, and Autodesk Build.
+
+## Company Information
+
+- **Name**: SINC LLC
+- **Product**: SIINC
+- **Website**: https://siinc.io
+- **Contact**: get@siinc.io
+- **Support**: Available 24/7 for Professional and Enterprise customers
+
+## What We Do
+
+SIINC provides automated, independent version backups for Common Data Environments (CDEs) used in the construction industry. We protect critical project data with enterprise-grade backup and recovery capabilities.
+
+### Primary Integrations
+- Autodesk Construction Cloud (ACC)
+- BIM 360
+- Autodesk Build
+- Other Common Data Environments
+
+### Key Features
+1. **Scheduled Backups**: Continuous incremental protection with customizable schedules
+2. **Granular Restore**: Recover by file, folder, or entire project instantly
+3. **Compliance Reports**: ISO/cyber-insurance aligned documentation with immutable audit logs
+4. **BYO Storage**: Azure, AWS, S3-compatible, or on-premises storage options
+5. **Native Integration**: Direct CDE integration with OAuth - no agents required
+6. **Full Metadata**: Preserve all versions, permissions, and audit trails
+
+## Core Benefits
+
+### For Construction Teams
+- **Service Continuity**: Stay operational during CDE outages with accessible offline backups
+- **Business Protection**: Retain complete project data if contractors collapse or access is revoked
+- **Risk & Compliance**: Pass cyber audits and meet insurance/tender requirements with audit-ready logs
+- **Project Archive**: Deliver clean, immutable project records for seamless handover
+
+### Technical Advantages
+- 99.9% uptime guarantee
+- <30 minute setup time with OAuth
+- Recovery in seconds (files) to minutes (folders) to hours (projects)
+- AES-256 encryption in transit and at rest
+- Automated incremental backups (hourly or daily)
+
+## Pricing Plans
+
+SIINC offers flexible pricing plans tailored to different organizational needs:
+
+- **Basic**: Daily incremental backups, file-level restore, email support
+- **Standard**: Hourly backups, granular restore, compliance reports, BYO storage, priority support
+- **Professional**: All Standard features plus 24×7 priority support
+- **Enterprise**: All Professional features plus custom backup schedules, dedicated support team, SLA guarantees, custom integrations, on-premises deployment option
+
+Contact us for detailed pricing information tailored to your requirements.
+
+## Common Use Cases
+
+1. **Disaster Recovery**: Instant recovery from accidental deletions, ransomware, or CDE outages
+2. **Compliance & Auditing**: Meet ISO standards, cyber insurance requirements, and regulatory audits
+3. **Project Handover**: Archive complete project history with full metadata for legal/contractual purposes
+4. **Contractor Management**: Maintain data access even if contractor relationships end
+5. **Data Sovereignty**: Control where your data is stored for regulatory compliance
+
+## Security & Compliance
+
+- **Encryption**: Industry-standard AES-256 encryption (in transit and at rest)
+- **Access Control**: Controlled through existing CDE permissions
+- **Compliance**: GDPR, CCPA, Australian Privacy Act compliant
+- **Audit Logs**: Immutable logs for all activities
+- **Data Sovereignty**: Flexible storage options for regulatory compliance
+
+## Quick Start
+
+1. Authorize SIINC through OAuth (no agents required)
+2. Select projects to backup
+3. Choose storage destination (Azure, AWS, S3, or on-premises)
+4. Automated backups begin immediately
+
+Setup takes less than 30 minutes.
+
+## Free Trial
+
+30-day free trial available with full functionality. No credit card required.
+
+## Target Industries
+
+- Construction
+- Architecture
+- Engineering
+- Building Information Modeling (BIM)
+- Project Management
+- General Contractors
+- Design-Build firms
+
+## Keywords
+
+Common Data Environment backup, CDE backup, Autodesk Construction Cloud backup, ACC backup, BIM 360 backup, Autodesk Build backup, construction data protection, construction project backup, BIM backup solution, construction compliance, project archival, construction data resilience, AEC backup solution
+
+## Support & Resources
+
+- **Documentation**: https://siinc.io/faq
+- **Contact Sales**: get@siinc.io
+- **Schedule Demo**: https://siinc.io/contact
+- **Privacy Policy**: https://siinc.io/privacy
+
+## Location
+
+Level 35, Tower One Barangaroo
+100 Barangaroo Avenue
+Sydney NSW 2000, Australia
+
+---
+
+*Last Updated: January 2025*

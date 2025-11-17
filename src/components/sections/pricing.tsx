@@ -78,7 +78,8 @@ export default function Pricing({
             </h2>
           )}
           <p className="text-muted-foreground text-lg text-balance">
-            Choose the plan that best fits your needs. Contact us for detailed pricing information tailored to your requirements.
+            Choose the plan that best fits your needs. Contact us for detailed
+            pricing information tailored to your requirements.
           </p>
         </div>
 

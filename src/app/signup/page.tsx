@@ -211,18 +211,12 @@ const Signup = () => {
                         <SelectValue placeholder="Choose a plan" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="basic">
-                          Basic
-                        </SelectItem>
-                        <SelectItem value="standard">
-                          Standard
-                        </SelectItem>
+                        <SelectItem value="basic">Basic</SelectItem>
+                        <SelectItem value="standard">Standard</SelectItem>
                         <SelectItem value="professional">
                           Professional
                         </SelectItem>
-                        <SelectItem value="enterprise">
-                          Enterprise
-                        </SelectItem>
+                        <SelectItem value="enterprise">Enterprise</SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.plan && (
