@@ -18,7 +18,7 @@ const FEATURES = [
     content: {
       title: 'Automated protection that never sleeps',
       description: `Set it and forget it. SIINC continuously backs up your CDE projects with incremental snapshots, minimizing data loss and ensuring you always have recent recovery points available.`,
-      image: '/images/homepage/Hero2.webp',
+      image: '/images/homepage/Hero2-2.webp',
       className: 'md:[&_img]:translate-x-20 [&_img]:translate-x-5 ',
     },
     icon: CalendarClock,
