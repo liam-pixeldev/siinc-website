@@ -54,8 +54,8 @@ export default function Logos() {
           Trusted by Leading Partners &amp; Integrators
           <br />
           <span className="text-muted-foreground">
-            Delivering enterprise-grade backup solutions across the construction
-            industry.
+            Delivering enterprise-grade backup solutions across the
+            architectural, engineering and construction industries.
           </span>
         </h2>
       </div>

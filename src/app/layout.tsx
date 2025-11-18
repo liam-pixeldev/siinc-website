@@ -26,8 +26,7 @@ const interTight = Inter_Tight({
 export const metadata: Metadata = {
   metadataBase: new URL('https://siinc.io'),
   title: {
-    default:
-      "SIINC - Independent version backups for common data environments (CDE's)",
+    default: 'SIINC - Protecting Data That Builds the World',
     template: '%s | SIINC',
   },
   description:
@@ -85,8 +84,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://siinc.io',
-    title:
-      "SIINC - Independent version backups for common data environments (CDE's)",
+    title: 'SIINC - Protecting Data That Builds the World',
     description:
       "Enterprise-grade backup and recovery for common data environments (CDE's). Automated version backups, instant restore, and compliance-ready reporting for ACC, BIM 360 & Autodesk Build.",
     siteName: 'SIINC',
@@ -95,14 +93,13 @@ export const metadata: Metadata = {
         url: 'https://siinc.io/og-image.png',
         width: 1200,
         height: 630,
-        alt: "SIINC - Independent version backups for common data environments (CDE's)",
+        alt: 'SIINC - Protecting Data That Builds the World',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title:
-      "SIINC - Independent version backups for common data environments (CDE's)",
+    title: 'SIINC - Protecting Data That Builds the World',
     description:
       "Enterprise-grade backup and recovery for common data environments (CDE's). Automated version backups, instant restore, and compliance-ready reporting.",
     site: '@siinc_io',
