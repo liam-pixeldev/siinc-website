@@ -158,6 +158,14 @@ export default function RootLayout({
           <main className="">{children}</main>
           <Footer />
         </ThemeProvider>
+        {/* HubSpot Embed Code */}
+        <script
+          type="text/javascript"
+          id="hs-script-loader"
+          async
+          defer
+          src="//js-ap1.hs-scripts.com/442453532.js"
+        />
       </body>
     </html>
   );
