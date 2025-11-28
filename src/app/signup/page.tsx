@@ -35,7 +35,7 @@ const signupSchema = z.object({
     .max(255, 'Last name is too long'),
   email: z.string().email('Please enter a valid email address'),
   company: z.string().optional(),
-  plan: z.enum(['basic', 'standard', 'professional', 'enterprise']),
+  plan: z.enum(['standard', 'professional', 'enterprise']),
 });
 
 type SignupFormData = z.infer<typeof signupSchema>;
@@ -50,8 +50,8 @@ const Signup = () => {
   const planParam = searchParams.get('plan');
   const initialPlan =
     planParam &&
-    ['basic', 'standard', 'professional', 'enterprise'].includes(planParam)
-      ? (planParam as 'basic' | 'standard' | 'professional' | 'enterprise')
+    ['standard', 'professional', 'enterprise'].includes(planParam)
+      ? (planParam as 'standard' | 'professional' | 'enterprise')
       : 'standard';
 
   const {
@@ -197,11 +197,7 @@ const Signup = () => {
                       onValueChange={(value) => {
                         setValue(
                           'plan',
-                          value as
-                            | 'basic'
-                            | 'standard'
-                            | 'professional'
-                            | 'enterprise',
+                          value as 'standard' | 'professional' | 'enterprise',
                           { shouldValidate: true },
                         );
                       }}
@@ -211,7 +207,6 @@ const Signup = () => {
                         <SelectValue placeholder="Choose a plan" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="basic">Basic</SelectItem>
                         <SelectItem value="standard">Standard</SelectItem>
                         <SelectItem value="professional">
                           Professional

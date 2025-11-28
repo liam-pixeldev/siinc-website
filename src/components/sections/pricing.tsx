@@ -10,27 +10,14 @@ import { cn } from '@/lib/utils';
 
 const plans = [
   {
-    name: 'Basic',
-    id: 'basic',
+    name: 'Standard',
+    id: 'standard',
     features: [
       'Daily incremental backups',
       'File-level restore',
       'Email support',
     ],
     cta: 'Get started',
-  },
-  {
-    name: 'Standard',
-    id: 'standard',
-    features: [
-      'Hourly incremental backups',
-      'Granular restore (file/folder/project)',
-      'Compliance reports & audit logs',
-      'BYO storage (Azure/AWS/S3)',
-      'Email + priority support',
-    ],
-    cta: 'Get started',
-    popular: true,
   },
   {
     name: 'Professional',
@@ -43,6 +30,7 @@ const plans = [
       '24×7 priority support',
     ],
     cta: 'Get started',
+    popular: true,
   },
   {
     name: 'Enterprise',
@@ -83,7 +71,7 @@ export default function Pricing({
           </p>
         </div>
 
-        <div className="mt-8 grid gap-8 sm:grid-cols-2 md:mt-12 lg:mt-20 lg:grid-cols-4">
+        <div className="mt-8 grid gap-8 sm:grid-cols-2 md:mt-12 lg:mt-20 lg:grid-cols-3">
           {plans.map((plan) => (
             <div
               key={plan.name}
