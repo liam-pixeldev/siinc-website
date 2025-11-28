@@ -49,8 +49,7 @@ const Signup = () => {
   // Get plan from URL parameter or default to 'standard'
   const planParam = searchParams.get('plan');
   const initialPlan =
-    planParam &&
-    ['standard', 'professional', 'enterprise'].includes(planParam)
+    planParam && ['standard', 'professional', 'enterprise'].includes(planParam)
       ? (planParam as 'standard' | 'professional' | 'enterprise')
       : 'standard';
 
