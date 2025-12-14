@@ -91,9 +91,9 @@ async function getXeroAccessToken(): Promise<string> {
 
   try {
     // For Custom Connections, use client_credentials grant type
+    // Note: Don't specify scope - Custom Connections use pre-configured scopes
     const params = new URLSearchParams();
     params.append('grant_type', 'client_credentials');
-    params.append('scope', 'accounting.contacts accounting.contacts.read');
 
     serverLog('info', 'Requesting Xero access token');
 
