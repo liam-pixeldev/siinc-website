@@ -2,6 +2,27 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import axios from 'axios';
 
+// Server-side logger that always logs in production for Vercel
+function serverLog(level: 'info' | 'warn' | 'error', message: string, data?: Record<string, unknown>) {
+  const timestamp = new Date().toISOString();
+  const logEntry = {
+    timestamp,
+    level,
+    service: 'signup-api',
+    message,
+    ...data,
+  };
+
+  // Always log to console - Vercel captures these in logs
+  if (level === 'error') {
+    console.error(JSON.stringify(logEntry));
+  } else if (level === 'warn') {
+    console.warn(JSON.stringify(logEntry));
+  } else {
+    console.log(JSON.stringify(logEntry));
+  }
+}
+
 // Validate environment variables
 function validateEnvironment(): { valid: boolean; error?: string } {
   const required = [
@@ -14,6 +35,7 @@ function validateEnvironment(): { valid: boolean; error?: string } {
   const missing = required.filter((key) => !process.env[key]);
 
   if (missing.length > 0) {
+    serverLog('error', 'Environment validation failed', { missing });
     return {
       valid: false,
       error: `Missing required environment variables: ${missing.join(', ')}`,
@@ -55,6 +77,10 @@ async function getXeroAccessToken(): Promise<string> {
   const clientSecret = process.env.XERO_CUSTOM_CLIENT_SECRET;
 
   if (!clientId || !clientSecret) {
+    serverLog('error', 'Xero credentials not configured', {
+      hasClientId: !!clientId,
+      hasClientSecret: !!clientSecret,
+    });
     throw new Error('Xero credentials not configured');
   }
 
@@ -69,20 +95,33 @@ async function getXeroAccessToken(): Promise<string> {
     params.append('grant_type', 'client_credentials');
     params.append('scope', 'accounting.contacts accounting.contacts.read');
 
+    serverLog('info', 'Requesting Xero access token');
+
     const response = await axios.post(tokenUrl, params.toString(), {
       headers: {
         Authorization: `Basic ${credentials}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
+      timeout: 30000,
     });
 
+    serverLog('info', 'Xero access token obtained successfully');
     return response.data.access_token;
-  } catch (error) {
-    // Log error for debugging
-    if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line no-console
-      console.error('Failed to get Xero access token:', error);
-    }
+  } catch (error: unknown) {
+    const axiosError = error as {
+      response?: { status?: number; data?: unknown; statusText?: string };
+      message?: string;
+      code?: string;
+    };
+
+    serverLog('error', 'Failed to get Xero access token', {
+      status: axiosError.response?.status,
+      statusText: axiosError.response?.statusText,
+      responseData: axiosError.response?.data,
+      errorMessage: axiosError.message,
+      errorCode: axiosError.code,
+    });
+
     throw new Error('Xero authentication failed');
   }
 }
@@ -95,6 +134,7 @@ async function searchXeroContact(
   const tenantId = process.env.TENANT_ID;
 
   if (!tenantId) {
+    serverLog('error', 'Tenant ID not configured');
     throw new Error('Tenant ID not configured');
   }
 
@@ -107,33 +147,33 @@ async function searchXeroContact(
         'xero-tenant-id': tenantId,
         Accept: 'application/json',
       },
+      timeout: 30000,
     });
 
     // Check if any contacts were found
     if (response.data.Contacts && response.data.Contacts.length > 0) {
       const existingContact = response.data.Contacts[0];
-      if (process.env.NODE_ENV === 'development') {
-        // eslint-disable-next-line no-console
-        console.log(
-          `Found existing Xero contact for ${email}: ${existingContact.ContactID}`,
-        );
-      }
+      serverLog('info', 'Found existing Xero contact', {
+        email,
+        contactId: existingContact.ContactID,
+      });
       return existingContact.ContactID;
     }
 
+    serverLog('info', 'No existing Xero contact found', { email });
     return null;
   } catch (error: unknown) {
     const axiosError = error as {
       response?: { status?: number; data?: { Message?: string } };
+      message?: string;
     };
 
-    if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line no-console
-      console.error(
-        'Failed to search Xero contacts:',
-        axiosError.response?.data || error,
-      );
-    }
+    serverLog('warn', 'Failed to search Xero contacts', {
+      email,
+      status: axiosError.response?.status,
+      responseData: axiosError.response?.data,
+      errorMessage: axiosError.message,
+    });
 
     // If search fails, return null to proceed with creation
     return null;
@@ -151,6 +191,7 @@ async function createXeroContact(
   const tenantId = process.env.TENANT_ID;
 
   if (!tenantId) {
+    serverLog('error', 'Tenant ID not configured');
     throw new Error('Tenant ID not configured');
   }
 
@@ -178,6 +219,8 @@ async function createXeroContact(
       ],
     };
 
+    serverLog('info', 'Creating Xero contact', { email, company });
+
     const response = await axios.post(xeroApiUrl, contactData, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -185,22 +228,27 @@ async function createXeroContact(
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
+      timeout: 30000,
     });
 
     const xeroContact = response.data.Contacts[0];
+    serverLog('info', 'Xero contact created successfully', {
+      email,
+      contactId: xeroContact.ContactID,
+    });
     return xeroContact.ContactID;
   } catch (error: unknown) {
     const axiosError = error as {
       response?: { status?: number; data?: { Message?: string } };
+      message?: string;
     };
 
-    if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line no-console
-      console.error(
-        'Failed to create Xero contact:',
-        axiosError.response?.data || error,
-      );
-    }
+    serverLog('error', 'Failed to create Xero contact', {
+      email,
+      status: axiosError.response?.status,
+      responseData: axiosError.response?.data,
+      errorMessage: axiosError.message,
+    });
 
     // Check for various Xero error scenarios
     if (axiosError.response?.status === 400) {
@@ -210,13 +258,7 @@ async function createXeroContact(
         errorMessage.includes('duplicate') ||
         errorMessage.includes('Email address is already in use')
       ) {
-        // If contact already exists, try to search for it instead
-        if (process.env.NODE_ENV === 'development') {
-          // eslint-disable-next-line no-console
-          console.log(
-            'Contact already exists, will search for existing contact',
-          );
-        }
+        serverLog('info', 'Contact already exists, will search for existing contact', { email });
         throw new Error('Contact already exists in Xero');
       }
       throw new Error('Invalid contact data');
@@ -246,6 +288,7 @@ async function createSIINCUser(
   const siincApiKey = process.env.SIINC_API_KEY;
 
   if (!siincApiKey) {
+    serverLog('error', 'SIINC API key not configured');
     throw new Error('SIINC API key not configured');
   }
 
@@ -261,6 +304,8 @@ async function createSIINCUser(
       charge_rate: 0,
       plan: plan || 'standard',
     };
+
+    serverLog('info', 'Creating SIINC user', { email, xeroId, plan: plan || 'standard' });
 
     const response = await axios.post(siincApiUrl, userData, {
       headers: {
@@ -280,16 +325,23 @@ async function createSIINCUser(
     if (response.status !== 200 && response.status !== 201) {
       throw new Error(response.data?.message || 'Failed to create user');
     }
-  } catch (error: unknown) {
-    const axiosError = error as { response?: { data?: { message?: string } } };
 
-    if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line no-console
-      console.error(
-        'Failed to create SIINC user:',
-        axiosError.response?.data || error,
-      );
-    }
+    serverLog('info', 'SIINC user created successfully', { email, xeroId });
+  } catch (error: unknown) {
+    const axiosError = error as {
+      response?: { status?: number; data?: { message?: string } };
+      message?: string;
+      code?: string;
+    };
+
+    serverLog('error', 'Failed to create SIINC user', {
+      email,
+      xeroId,
+      status: axiosError.response?.status,
+      responseData: axiosError.response?.data,
+      errorMessage: axiosError.message,
+      errorCode: axiosError.code,
+    });
 
     if (axiosError.response?.data?.message?.includes('already exists')) {
       throw new Error('User already exists');
@@ -311,12 +363,7 @@ async function sendWelcomeEmail(
     const postmarkToken = process.env.POSTMARK_SERVER_TOKEN;
 
     if (!postmarkToken || postmarkToken.includes('your-token-here')) {
-      if (process.env.NODE_ENV === 'development') {
-        // eslint-disable-next-line no-console
-        console.warn(
-          'Postmark not properly configured, skipping welcome email',
-        );
-      }
+      serverLog('warn', 'Postmark not properly configured, skipping welcome email');
       return;
     }
 
@@ -337,7 +384,7 @@ async function sendWelcomeEmail(
             You can now log in to your account and start protecting your Autodesk Construction Cloud data.
           </p>
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://app.siinc.io" 
+            <a href="https://app.siinc.io"
                style="display: inline-block; padding: 12px 30px; background: #000; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
               Log In to Your Account
             </a>
@@ -379,49 +426,43 @@ The SIINC Team
         MessageStream: 'outbound',
       });
 
-      if (process.env.NODE_ENV === 'development') {
-        // eslint-disable-next-line no-console
-        console.log(`Welcome email sent to ${email}`);
-      }
+      serverLog('info', 'Welcome email sent', { email });
     } catch (emailError) {
       const emailErr = emailError as {
         message?: string;
         code?: string;
         statusCode?: number;
       };
-      if (process.env.NODE_ENV === 'development') {
-        // eslint-disable-next-line no-console
-        console.warn('Failed to send welcome email:', {
-          error: emailErr.message,
-          code: emailErr.code,
-          statusCode: emailErr.statusCode,
-        });
-      }
+      serverLog('warn', 'Failed to send welcome email', {
+        email,
+        error: emailErr.message,
+        code: emailErr.code,
+        statusCode: emailErr.statusCode,
+      });
       // Don't throw - email is not critical to account creation
     }
   } catch (error) {
-    if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line no-console
-      console.error('Welcome email service error:', error);
-    }
+    const err = error as { message?: string };
+    serverLog('error', 'Welcome email service error', { error: err.message });
     // Don't throw - welcome email is not critical to account creation
   }
 }
 
 export async function POST(request: NextRequest) {
+  const requestId = crypto.randomUUID().slice(0, 8);
+
   try {
+    serverLog('info', 'Signup request received', { requestId });
+
     // Validate environment configuration
     const envValidation = validateEnvironment();
     if (!envValidation.valid) {
-      if (process.env.NODE_ENV === 'development') {
-        // eslint-disable-next-line no-console
-        console.error('Environment validation failed:', envValidation.error);
-      }
       return NextResponse.json(
         { error: 'Service configuration error. Please contact support.' },
         { status: 503 },
       );
     }
+
     // Get client IP for rate limiting
     const ip =
       request.headers.get('x-forwarded-for')?.split(',')[0] ||
@@ -430,6 +471,7 @@ export async function POST(request: NextRequest) {
 
     // Check rate limit
     if (!checkRateLimit(ip)) {
+      serverLog('warn', 'Rate limit exceeded', { requestId, ip });
       return NextResponse.json(
         { error: 'Too many requests. Please try again later.' },
         { status: 429 },
@@ -442,6 +484,7 @@ export async function POST(request: NextRequest) {
 
     // Validate required fields
     if (!firstName || !lastName || !email) {
+      serverLog('warn', 'Missing required fields', { requestId, hasFirstName: !!firstName, hasLastName: !!lastName, hasEmail: !!email });
       return NextResponse.json(
         { error: 'Please fill in all required fields.' },
         { status: 400 },
@@ -451,6 +494,7 @@ export async function POST(request: NextRequest) {
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+      serverLog('warn', 'Invalid email format', { requestId, email });
       return NextResponse.json(
         { error: 'Please provide a valid email address.' },
         { status: 400 },
@@ -468,6 +512,8 @@ export async function POST(request: NextRequest) {
       company: company ? sanitize(company) : undefined,
       plan: plan || 'standard',
     };
+
+    serverLog('info', 'Processing signup', { requestId, email: sanitizedData.email, plan: sanitizedData.plan });
 
     try {
       // Step 1: Get Xero access token
@@ -500,6 +546,8 @@ export async function POST(request: NextRequest) {
       // Step 5: Send welcome email (optional - don't fail if email service is down)
       await sendWelcomeEmail(sanitizedData.firstName, sanitizedData.email);
 
+      serverLog('info', 'Signup completed successfully', { requestId, email: sanitizedData.email, xeroId });
+
       return NextResponse.json(
         {
           success: true,
@@ -509,12 +557,14 @@ export async function POST(request: NextRequest) {
         { status: 200 },
       );
     } catch (error: unknown) {
-      const errorObj = error as { message?: string };
+      const errorObj = error as { message?: string; stack?: string };
 
-      if (process.env.NODE_ENV === 'development') {
-        // eslint-disable-next-line no-console
-        console.error('Signup error:', error);
-      }
+      serverLog('error', 'Signup processing error', {
+        requestId,
+        email: sanitizedData.email,
+        errorMessage: errorObj.message,
+        errorStack: errorObj.stack,
+      });
 
       // Handle specific error messages
       if (
@@ -549,10 +599,12 @@ export async function POST(request: NextRequest) {
       );
     }
   } catch (error) {
-    if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line no-console
-      console.error('Unexpected error:', error);
-    }
+    const err = error as { message?: string; stack?: string };
+    serverLog('error', 'Unexpected error in signup handler', {
+      requestId,
+      errorMessage: err.message,
+      errorStack: err.stack,
+    });
     return NextResponse.json(
       { error: 'An unexpected error occurred. Please try again.' },
       { status: 500 },
