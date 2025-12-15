@@ -223,7 +223,7 @@ async function createSIINCUser(
     throw new Error('SIINC API key not configured');
   }
 
-  const siincApiUrl = 'https://3.106.200.79/api/client/';
+  const siincApiUrl = 'https://app.siinc.io/api/client/';
 
   try {
     const userData = {
@@ -245,12 +245,6 @@ async function createSIINCUser(
       },
       timeout: 30000,
       validateStatus: (status) => status === 200 || status === 201,
-      // In development, allow self-signed or mismatched certificates
-      ...(process.env.NODE_ENV === 'development' && {
-        httpsAgent: new (await import('https')).Agent({
-          rejectUnauthorized: false,
-        }),
-      }),
     });
 
     if (response.status !== 200 && response.status !== 201) {
