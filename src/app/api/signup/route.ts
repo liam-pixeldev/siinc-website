@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import axios from 'axios';
 
+import { getValidAccessToken, getTenantId } from '@/lib/xero';
+
 // Server-side logger that always logs in production for Vercel
 function serverLog(level: 'info' | 'warn' | 'error', message: string, data?: Record<string, unknown>) {
   const timestamp = new Date().toISOString();
@@ -25,12 +27,8 @@ function serverLog(level: 'info' | 'warn' | 'error', message: string, data?: Rec
 
 // Validate environment variables
 function validateEnvironment(): { valid: boolean; error?: string } {
-  const required = [
-    'XERO_CUSTOM_CLIENT_ID',
-    'XERO_CUSTOM_CLIENT_SECRET',
-    'TENANT_ID',
-    'SIINC_API_KEY',
-  ];
+  // Only check SIINC_API_KEY - Xero credentials are now managed via OAuth
+  const required = ['SIINC_API_KEY'];
 
   const missing = required.filter((key) => !process.env[key]);
 
@@ -41,8 +39,6 @@ function validateEnvironment(): { valid: boolean; error?: string } {
       error: `Missing required environment variables: ${missing.join(', ')}`,
     };
   }
-
-  // SIINC_API_KEY validation removed - 'your-api-key-here' is acceptable
 
   return { valid: true };
 }
@@ -71,72 +67,12 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
-// Get Xero access token using client credentials
-async function getXeroAccessToken(): Promise<string> {
-  const clientId = process.env.XERO_CUSTOM_CLIENT_ID;
-  const clientSecret = process.env.XERO_CUSTOM_CLIENT_SECRET;
-
-  if (!clientId || !clientSecret) {
-    serverLog('error', 'Xero credentials not configured', {
-      hasClientId: !!clientId,
-      hasClientSecret: !!clientSecret,
-    });
-    throw new Error('Xero credentials not configured');
-  }
-
-  const tokenUrl = 'https://identity.xero.com/connect/token';
-  const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString(
-    'base64',
-  );
-
-  try {
-    // For Custom Connections, use client_credentials grant type
-    // Note: Don't specify scope - Custom Connections use pre-configured scopes
-    const params = new URLSearchParams();
-    params.append('grant_type', 'client_credentials');
-
-    serverLog('info', 'Requesting Xero access token');
-
-    const response = await axios.post(tokenUrl, params.toString(), {
-      headers: {
-        Authorization: `Basic ${credentials}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      timeout: 30000,
-    });
-
-    serverLog('info', 'Xero access token obtained successfully');
-    return response.data.access_token;
-  } catch (error: unknown) {
-    const axiosError = error as {
-      response?: { status?: number; data?: unknown; statusText?: string };
-      message?: string;
-      code?: string;
-    };
-
-    serverLog('error', 'Failed to get Xero access token', {
-      status: axiosError.response?.status,
-      statusText: axiosError.response?.statusText,
-      responseData: axiosError.response?.data,
-      errorMessage: axiosError.message,
-      errorCode: axiosError.code,
-    });
-
-    throw new Error('Xero authentication failed');
-  }
-}
-
 // Search for existing contact in Xero by email
 async function searchXeroContact(
   accessToken: string,
+  tenantId: string,
   email: string,
 ): Promise<string | null> {
-  const tenantId = process.env.TENANT_ID;
-
-  if (!tenantId) {
-    serverLog('error', 'Tenant ID not configured');
-    throw new Error('Tenant ID not configured');
-  }
 
   const xeroApiUrl = `https://api.xero.com/api.xro/2.0/Contacts?where=EmailAddress="${encodeURIComponent(email)}"`;
 
@@ -183,17 +119,12 @@ async function searchXeroContact(
 // Create contact in Xero
 async function createXeroContact(
   accessToken: string,
+  tenantId: string,
   firstName: string,
   lastName: string,
   email: string,
   company?: string,
 ): Promise<string> {
-  const tenantId = process.env.TENANT_ID;
-
-  if (!tenantId) {
-    serverLog('error', 'Tenant ID not configured');
-    throw new Error('Tenant ID not configured');
-  }
 
   const xeroApiUrl = 'https://api.xero.com/api.xro/2.0/Contacts';
 
@@ -516,16 +447,24 @@ export async function POST(request: NextRequest) {
     serverLog('info', 'Processing signup', { requestId, email: sanitizedData.email, plan: sanitizedData.plan });
 
     try {
-      // Step 1: Get Xero access token
-      const accessToken = await getXeroAccessToken();
+      // Step 1: Get Xero access token (uses OAuth tokens with auto-refresh)
+      const accessToken = await getValidAccessToken();
 
-      // Step 2: Check if contact already exists in Xero
-      let xeroId = await searchXeroContact(accessToken, sanitizedData.email);
+      // Step 2: Get tenant ID from stored OAuth connection
+      const tenantId = await getTenantId();
+      if (!tenantId) {
+        serverLog('error', 'Xero tenant ID not found - Xero not connected', { requestId });
+        throw new Error('Xero not connected');
+      }
 
-      // Step 3: If no existing contact, create a new one
+      // Step 3: Check if contact already exists in Xero
+      let xeroId = await searchXeroContact(accessToken, tenantId, sanitizedData.email);
+
+      // Step 4: If no existing contact, create a new one
       if (!xeroId) {
         xeroId = await createXeroContact(
           accessToken,
+          tenantId,
           sanitizedData.firstName,
           sanitizedData.lastName,
           sanitizedData.email,
@@ -533,7 +472,7 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      // Step 4: Create user in SIINC backend (including plan info)
+      // Step 5: Create user in SIINC backend (including plan info)
       await createSIINCUser(
         xeroId,
         sanitizedData.firstName,
@@ -580,7 +519,12 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      if (errorObj.message === 'Xero authentication failed') {
+      if (
+        errorObj.message === 'Xero authentication failed' ||
+        errorObj.message === 'Xero not connected' ||
+        errorObj.message?.includes('not connected') ||
+        errorObj.message?.includes('refresh failed')
+      ) {
         return NextResponse.json(
           {
             error:
