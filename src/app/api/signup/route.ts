@@ -238,6 +238,12 @@ async function createSIINCUser(
 
     serverLog('info', 'Creating SIINC user', { email, xeroId, plan: plan || 'standard' });
 
+    // Create https agent to handle certificate issues with internal backend
+    const https = await import('https');
+    const httpsAgent = new https.Agent({
+      rejectUnauthorized: false,
+    });
+
     const response = await axios.post(siincApiUrl, userData, {
       headers: {
         'Content-Type': 'application/json',
@@ -245,6 +251,7 @@ async function createSIINCUser(
       },
       timeout: 30000,
       validateStatus: (status) => status === 200 || status === 201,
+      httpsAgent,
     });
 
     if (response.status !== 200 && response.status !== 201) {
