@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
           </p>
         </div>
         <div style="text-align: center; padding: 20px; color: #999; font-size: 12px;">
-          <p>© 2024 SIINC. All rights reserved.</p>
+          <p>© ${new Date().getFullYear()} SIINC. All rights reserved.</p>
         </div>
       </div>
     `;
