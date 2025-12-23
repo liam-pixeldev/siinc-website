@@ -407,6 +407,82 @@ The SIINC Team
   }
 }
 
+// Send admin notification email
+async function sendAdminNotification(
+  firstName: string,
+  lastName: string,
+  email: string,
+  company?: string,
+  plan?: string,
+): Promise<void> {
+  try {
+    const postmarkToken = process.env.POSTMARK_SERVER_TOKEN;
+
+    if (!postmarkToken || postmarkToken.includes('your-token-here')) {
+      serverLog('warn', 'Postmark not properly configured, skipping admin notification');
+      return;
+    }
+
+    const postmark = await import('postmark');
+    const client = new postmark.ServerClient(postmarkToken);
+
+    const htmlBody = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="background: #f5f5f5; padding: 30px; border-radius: 8px;">
+          <h2 style="color: #333; margin-top: 0;">New Signup</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; color: #666; width: 120px;"><strong>Name:</strong></td>
+              <td style="padding: 8px 0; color: #333;">${firstName} ${lastName}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #666;"><strong>Email:</strong></td>
+              <td style="padding: 8px 0; color: #333;"><a href="mailto:${email}">${email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #666;"><strong>Company:</strong></td>
+              <td style="padding: 8px 0; color: #333;">${company || 'Not provided'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #666;"><strong>Plan:</strong></td>
+              <td style="padding: 8px 0; color: #333;">${plan || 'standard'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #666;"><strong>Time:</strong></td>
+              <td style="padding: 8px 0; color: #333;">${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney' })} (Sydney)</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    `;
+
+    const textBody = `
+New Signup
+
+Name: ${firstName} ${lastName}
+Email: ${email}
+Company: ${company || 'Not provided'}
+Plan: ${plan || 'standard'}
+Time: ${new Date().toISOString()}
+    `;
+
+    await client.sendEmail({
+      From: 'website@siinc.io',
+      To: 'get@siinc.io',
+      Subject: `New Signup: ${firstName} ${lastName}${company ? ` (${company})` : ''}`,
+      HtmlBody: htmlBody,
+      TextBody: textBody,
+      MessageStream: 'outbound',
+    });
+
+    serverLog('info', 'Admin notification sent', { email });
+  } catch (error) {
+    const err = error as { message?: string };
+    serverLog('warn', 'Failed to send admin notification', { error: err.message });
+    // Don't throw - admin notification is not critical to account creation
+  }
+}
+
 export async function POST(request: NextRequest) {
   const requestId = crypto.randomUUID().slice(0, 8);
 
@@ -512,6 +588,15 @@ export async function POST(request: NextRequest) {
 
       // Step 5: Send welcome email (optional - don't fail if email service is down)
       await sendWelcomeEmail(sanitizedData.firstName, sanitizedData.email);
+
+      // Step 6: Send admin notification
+      await sendAdminNotification(
+        sanitizedData.firstName,
+        sanitizedData.lastName,
+        sanitizedData.email,
+        sanitizedData.company,
+        sanitizedData.plan,
+      );
 
       serverLog('info', 'Signup completed successfully', { requestId, email: sanitizedData.email, xeroId });
 
