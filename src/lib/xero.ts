@@ -374,13 +374,28 @@ export async function getValidAccessToken(): Promise<string> {
     throw new Error('Xero not connected. Please connect via admin panel.');
   }
 
+  const now = Date.now();
+  const timeUntilExpiry = tokens.expires_at - now;
+
+  xeroLog('info', 'Checking token validity', {
+    now,
+    expiresAt: tokens.expires_at,
+    timeUntilExpiryMs: timeUntilExpiry,
+    timeUntilExpiryMin: Math.round(timeUntilExpiry / 60000),
+    tokenPrefix: tokens.access_token?.substring(0, 20) + '...',
+  });
+
   // Check if token is expired (or will expire within 1 minute)
-  if (Date.now() >= tokens.expires_at) {
+  if (now >= tokens.expires_at) {
     xeroLog('info', 'Access token expired, refreshing');
 
     try {
       const newTokens = await refreshAccessToken(tokens.refresh_token);
       await storeTokens(newTokens);
+      xeroLog('info', 'Token refreshed successfully', {
+        newExpiresAt: newTokens.expires_at,
+        newTokenPrefix: newTokens.access_token?.substring(0, 20) + '...',
+      });
       return newTokens.access_token;
     } catch {
       // If refresh fails, tokens may be invalid - delete them
