@@ -9,8 +9,10 @@ import {
   CheckCircle2,
   XCircle,
   AlertCircle,
+  AlertTriangle,
   Link2,
   Unlink,
+  RefreshCw,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -28,6 +30,8 @@ interface ConnectionStatus {
   connected: boolean;
   expiresAt?: number;
   tenantId?: string;
+  scope?: string;
+  missingScopes?: string[];
 }
 
 function XeroAdminContent() {
@@ -118,6 +122,40 @@ function XeroAdminContent() {
       }
     } catch {
       setMessage({ type: 'error', text: 'Failed to disconnect' });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRefreshToken = async () => {
+    setIsLoading(true);
+    setMessage(null);
+
+    try {
+      const response = await fetch('/api/xero/refresh', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ secret: adminSecret }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setStatus({
+          connected: data.connected,
+          expiresAt: data.expiresAt,
+          tenantId: data.tenantId,
+          scope: data.scope,
+        });
+        setMessage({
+          type: 'success',
+          text: 'Token refreshed successfully',
+        });
+      } else {
+        const data = await response.json();
+        setMessage({ type: 'error', text: data.error || 'Failed to refresh token' });
+      }
+    } catch {
+      setMessage({ type: 'error', text: 'Failed to refresh token' });
     } finally {
       setIsLoading(false);
     }
@@ -223,18 +261,52 @@ function XeroAdminContent() {
                   )}
                 </div>
 
-                {/* Refresh Status Button */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={fetchStatus}
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  ) : null}
-                  Refresh Status
-                </Button>
+                {/* Missing Scopes Warning */}
+                {status?.missingScopes && status.missingScopes.length > 0 && (
+                  <div className="flex items-start gap-2 rounded-md border border-yellow-300 bg-yellow-50 p-3">
+                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-yellow-600" />
+                    <div>
+                      <p className="text-sm font-medium text-yellow-800">
+                        Missing Required Permissions
+                      </p>
+                      <p className="text-sm text-yellow-700">
+                        The following scopes are missing:{' '}
+                        {status.missingScopes.join(', ')}
+                      </p>
+                      <p className="mt-1 text-sm text-yellow-700">
+                        Please click &quot;Reconnect&quot; to grant the required permissions.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Refresh Buttons */}
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleRefreshToken}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                      <RefreshCw className="mr-2 h-4 w-4" />
+                    )}
+                    Refresh Token
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={fetchStatus}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    ) : null}
+                    Check Status
+                  </Button>
+                </div>
               </>
             )}
 

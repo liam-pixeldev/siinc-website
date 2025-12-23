@@ -38,7 +38,7 @@ const XERO_AUTHORIZE_URL = 'https://login.xero.com/identity/connect/authorize';
 const XERO_CONNECTIONS_URL = 'https://api.xero.com/connections';
 
 // All required scopes
-const XERO_SCOPES = [
+export const XERO_SCOPES = [
   'offline_access',
   'openid',
   'profile',
@@ -66,6 +66,9 @@ const XERO_SCOPES = [
   'projects.read',
 ];
 
+// Scopes required for contact creation
+export const CONTACT_REQUIRED_SCOPES = ['accounting.contacts'];
+
 export interface XeroTokens {
   access_token: string;
   refresh_token: string;
@@ -78,6 +81,8 @@ export interface XeroConnectionStatus {
   connected: boolean;
   expiresAt?: number;
   tenantId?: string | null;
+  scope?: string;
+  missingScopes?: string[];
 }
 
 // Server-side logger
@@ -409,9 +414,28 @@ export async function getConnectionStatus(): Promise<XeroConnectionStatus> {
     return { connected: false };
   }
 
+  // Check for missing required scopes
+  const grantedScopes = tokens.scope ? tokens.scope.split(' ') : [];
+  const missingScopes = CONTACT_REQUIRED_SCOPES.filter(
+    (scope) => !grantedScopes.includes(scope),
+  );
+
   return {
     connected: true,
     expiresAt: tokens.expires_at,
     tenantId: tenantId,
+    scope: tokens.scope,
+    missingScopes: missingScopes.length > 0 ? missingScopes : undefined,
   };
+}
+
+/**
+ * Check if stored tokens have the required scope for contact creation
+ */
+export async function hasContactScope(): Promise<boolean> {
+  const tokens = await getStoredTokens();
+  if (!tokens || !tokens.scope) return false;
+
+  const grantedScopes = tokens.scope.split(' ');
+  return CONTACT_REQUIRED_SCOPES.every((scope) => grantedScopes.includes(scope));
 }

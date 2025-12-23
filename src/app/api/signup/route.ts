@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import axios from 'axios';
 
-import { getValidAccessToken, getTenantId } from '@/lib/xero';
+import { getValidAccessToken, getTenantId, hasContactScope } from '@/lib/xero';
 
 // Server-side logger that always logs in production for Vercel
 function serverLog(level: 'info' | 'warn' | 'error', message: string, data?: Record<string, unknown>) {
@@ -200,6 +200,11 @@ async function createXeroContact(
     }
 
     if (axiosError.response?.status === 403) {
+      // Check if this is due to missing scopes
+      const hasScope = await hasContactScope();
+      if (!hasScope) {
+        throw new Error('Xero token missing required scope: accounting.contacts. Please reconnect via admin panel.');
+      }
       throw new Error('Insufficient permissions to create Xero contact');
     }
 
@@ -530,6 +535,19 @@ export async function POST(request: NextRequest) {
           {
             error:
               'Authentication service is temporarily unavailable. Please try again later.',
+          },
+          { status: 503 },
+        );
+      }
+
+      if (
+        errorObj.message?.includes('missing required scope') ||
+        errorObj.message === 'Insufficient permissions to create Xero contact'
+      ) {
+        return NextResponse.json(
+          {
+            error:
+              'Service configuration error. Please contact support.',
           },
           { status: 503 },
         );
