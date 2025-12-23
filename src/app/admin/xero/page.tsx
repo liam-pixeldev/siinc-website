@@ -228,6 +228,11 @@ function XeroAdminContent() {
                           {new Date(status.expiresAt).toLocaleString()}
                         </p>
                       )}
+                      {status?.connected && (
+                        <p className="text-muted-foreground text-xs mt-1">
+                          Scopes: {status.scope || 'Not stored'}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
