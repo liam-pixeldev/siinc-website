@@ -100,7 +100,7 @@ async function searchXeroContact(
     return null;
   } catch (error: unknown) {
     const axiosError = error as {
-      response?: { status?: number; data?: { Message?: string } };
+      response?: { status?: number; data?: { Message?: string; Detail?: string } };
       message?: string;
     };
 
@@ -178,7 +178,7 @@ async function createXeroContact(
     return xeroContact.ContactID;
   } catch (error: unknown) {
     const axiosError = error as {
-      response?: { status?: number; data?: { Message?: string } };
+      response?: { status?: number; data?: { Message?: string; Detail?: string } };
       message?: string;
     };
 
