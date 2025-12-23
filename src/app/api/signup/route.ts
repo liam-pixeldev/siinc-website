@@ -111,7 +111,15 @@ async function searchXeroContact(
       errorMessage: axiosError.message,
     });
 
-    // If search fails, return null to proceed with creation
+    // Check if this is an authentication failure - don't proceed
+    if (
+      axiosError.response?.status === 403 &&
+      axiosError.response?.data?.Detail === 'AuthenticationUnsuccessful'
+    ) {
+      throw new Error('Xero authentication failed. Token may be invalid or expired. Please reconnect via admin panel.');
+    }
+
+    // For other errors, return null to proceed with creation attempt
     return null;
   }
 }
@@ -200,12 +208,19 @@ async function createXeroContact(
     }
 
     if (axiosError.response?.status === 403) {
+      const xeroDetail = axiosError.response?.data?.Detail;
+
       // Log the full Xero error for debugging
       serverLog('error', 'Xero 403 Forbidden error', {
         email,
         xeroError: axiosError.response?.data,
-        xeroMessage: axiosError.response?.data?.Message,
+        xeroDetail,
       });
+
+      // Check if this is an authentication failure (token invalid/expired)
+      if (xeroDetail === 'AuthenticationUnsuccessful') {
+        throw new Error('Xero authentication failed. Token may be invalid or expired. Please reconnect via admin panel.');
+      }
 
       // Check if this is due to missing scopes
       const hasScope = await hasContactScope();
@@ -536,7 +551,8 @@ export async function POST(request: NextRequest) {
         errorObj.message === 'Xero authentication failed' ||
         errorObj.message === 'Xero not connected' ||
         errorObj.message?.includes('not connected') ||
-        errorObj.message?.includes('refresh failed')
+        errorObj.message?.includes('refresh failed') ||
+        errorObj.message?.includes('Token may be invalid or expired')
       ) {
         return NextResponse.json(
           {
