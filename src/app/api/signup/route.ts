@@ -200,12 +200,19 @@ async function createXeroContact(
     }
 
     if (axiosError.response?.status === 403) {
+      // Log the full Xero error for debugging
+      serverLog('error', 'Xero 403 Forbidden error', {
+        email,
+        xeroError: axiosError.response?.data,
+        xeroMessage: axiosError.response?.data?.Message,
+      });
+
       // Check if this is due to missing scopes
       const hasScope = await hasContactScope();
       if (!hasScope) {
         throw new Error('Xero token missing required scope: accounting.contacts. Please reconnect via admin panel.');
       }
-      throw new Error('Insufficient permissions to create Xero contact');
+      throw new Error('Insufficient permissions to create Xero contact. Check Xero user role permissions.');
     }
 
     throw new Error('Failed to create Xero contact');
