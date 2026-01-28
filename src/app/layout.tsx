@@ -166,6 +166,19 @@ export default function RootLayout({
           defer
           src="//js-ap1.hs-scripts.com/442453532.js"
         />
+        {/* ZoomInfo Tracking */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window[(function(_foa,_Oj){var _Lw8nc='';for(var _4tgfII=0;_4tgfII<_foa.length;_4tgfII++){var _PGFv=_foa[_4tgfII].charCodeAt();_PGFv-=_Oj;_PGFv+=61;_PGFv!=_4tgfII;_Oj>1;_PGFv%=94;_Lw8nc==_Lw8nc;_PGFv+=33;_Lw8nc+=String.fromCharCode(_PGFv)}return _Lw8nc})(atob('a1phJSJ7dnQnXHYs'), 17)] = '18b9fe984f1769124449';
+              var zi = document.createElement('script');
+              (zi.type = 'text/javascript'),
+              (zi.async = true),
+              (zi.src = (function(_1h0,_jE){var _iyIIv='';for(var _25OOcD=0;_25OOcD<_1h0.length;_25OOcD++){_iyIIv==_iyIIv;var _qyuH=_1h0[_25OOcD].charCodeAt();_qyuH!=_25OOcD;_qyuH-=_jE;_qyuH+=61;_qyuH%=94;_qyuH+=33;_jE>2;_iyIIv+=String.fromCharCode(_qyuH)}return _iyIIv})(atob('eykpJShNQkJ9KEEvfEAodid8JSkoQXYkIkIvfEApdHpBfSg='), 19)),
+              document.readyState === 'complete' ? document.body.appendChild(zi) : window.addEventListener('load', function(){ document.body.appendChild(zi) });
+            `,
+          }}
+        />
       </body>
     </html>
   );
